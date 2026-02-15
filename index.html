@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vinceslink - Everyday Essentials, Smart Gadgets & Trusted Properties</title>
+    <title>Vinceslink - Everyday Essentials, Gadgets & Realty</title>
     <style>
         * {
             margin: 0;
@@ -14,201 +14,220 @@
 
 ```
     :root {
-        --primary-blue: #0043CE;
-        --primary-teal: #17B8A5;
-        --primary-orange: #FF8C42;
+        --primary-blue: #0033CC;
+        --primary-teal: #00BCD4;
+        --primary-orange: #FF8A3D;
         --dark-gray: #2C3E50;
-        --light-bg: #F8F9FA;
+        --light-gray: #F5F7FA;
         --white: #FFFFFF;
-        --text-dark: #333333;
+        --text-dark: #1A1A1A;
         --text-light: #666666;
     }
 
     body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background-color: var(--light-gray);
+        color: var(--text-dark);
         line-height: 1.6;
-        color: var(--text-dark);
-        transition: background-color 0.3s, color 0.3s;
-    }
-
-    body.light-mode {
-        background-color: var(--white);
-        color: var(--text-dark);
+        transition: background-color 0.3s ease;
     }
 
     body.dark-mode {
-        background-color: #1a1a1a;
-        color: #e0e0e0;
+        --light-gray: #1A1A1A;
+        --white: #2C2C2C;
+        --text-dark: #FFFFFF;
+        --text-light: #B0B0B0;
+        --dark-gray: #FFFFFF;
     }
 
-    body.dark-mode .header {
-        background-color: #2a2a2a;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    }
-
-    body.dark-mode .nav-link {
-        color: #e0e0e0;
-    }
-
-    body.dark-mode .business-card {
-        background-color: #2a2a2a;
-    }
-
-    body.dark-mode .faq-section,
-    body.dark-mode .contact-section {
-        background-color: #1a1a1a;
-    }
-
-    body.dark-mode .footer {
-        background-color: #0a0a0a;
-    }
-
-    /* Header Styles */
-    .header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background: var(--white);
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        z-index: 1000;
-        padding: 1rem 2rem;
-    }
-
-    .nav-container {
-        max-width: 1400px;
-        margin: 0 auto;
+    /* Navigation Styles */
+    .navbar {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 1.5rem 5%;
+        background-color: var(--white);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        transition: background-color 0.3s ease;
     }
 
     .logo-section {
         display: flex;
         align-items: center;
-        gap: 0.75rem;
+        gap: 12px;
     }
 
-    .logo-img {
+    .logo-circle {
         width: 50px;
         height: 50px;
-        background: var(--primary-blue);
+        background: linear-gradient(135deg, var(--primary-blue), var(--primary-teal));
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         color: white;
         font-weight: bold;
-        font-size: 1.5rem;
+        font-size: 24px;
+        font-style: italic;
     }
 
     .logo-text {
-        font-size: 1.5rem;
-        font-weight: bold;
+        font-size: 28px;
+        font-weight: 700;
         color: var(--primary-blue);
     }
 
     .nav-menu {
         display: flex;
-        gap: 2rem;
-        list-style: none;
+        gap: 2.5rem;
         align-items: center;
+        list-style: none;
     }
 
-    .nav-link {
+    .nav-menu li a {
         text-decoration: none;
         color: var(--text-dark);
         font-weight: 500;
-        transition: color 0.3s;
+        font-size: 15px;
+        transition: color 0.3s ease;
         position: relative;
     }
 
-    .nav-link:hover {
+    .nav-menu li a:hover {
         color: var(--primary-blue);
     }
 
-    .nav-link.active {
+    .nav-menu li a.active {
         color: var(--primary-blue);
-        border-bottom: 2px solid var(--primary-blue);
-        padding-bottom: 5px;
+    }
+
+    .nav-menu li a.active::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background-color: var(--primary-blue);
+        border-radius: 2px;
     }
 
     .services-dropdown {
         position: relative;
     }
 
-    .dropdown-toggle {
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
+    .dropdown-icon {
+        margin-left: 5px;
+        font-size: 12px;
+        transition: transform 0.3s ease;
+    }
+
+    .services-dropdown.active .dropdown-icon {
+        transform: rotate(180deg);
     }
 
     .dropdown-menu {
-        display: none;
         position: absolute;
         top: 100%;
         left: 0;
-        background: white;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        border-radius: 8px;
-        padding: 1rem 0;
+        background-color: var(--white);
         min-width: 200px;
-        margin-top: 0.5rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin-top: 10px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 100;
     }
 
-    .dropdown-menu.show {
+    .services-dropdown:hover .dropdown-menu,
+    .services-dropdown.active .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .dropdown-menu li {
+        list-style: none;
+    }
+
+    .dropdown-menu li a {
         display: block;
-    }
-
-    .dropdown-item {
-        padding: 0.75rem 1.5rem;
+        padding: 12px 20px;
         color: var(--text-dark);
         text-decoration: none;
-        display: block;
-        transition: background 0.3s;
+        font-weight: 500;
+        font-size: 14px;
+        transition: all 0.3s ease;
     }
 
-    .dropdown-item:hover {
-        background: var(--light-bg);
+    .dropdown-menu li a:hover {
+        background-color: var(--light-gray);
         color: var(--primary-blue);
+        padding-left: 25px;
     }
 
-    .sign-up-btn {
-        background: var(--primary-orange);
+    .dropdown-menu li:first-child a {
+        border-radius: 10px 10px 0 0;
+    }
+
+    .dropdown-menu li:last-child a {
+        border-radius: 0 0 10px 10px;
+    }
+
+    .nav-actions {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .signup-btn {
+        background-color: var(--primary-orange);
         color: white;
-        padding: 0.6rem 1.5rem;
+        padding: 12px 28px;
         border-radius: 25px;
         text-decoration: none;
         font-weight: 600;
-        transition: transform 0.3s, box-shadow 0.3s;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
     }
 
-    .sign-up-btn:hover {
+    .signup-btn:hover {
+        background-color: #FF7A2D;
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(255, 140, 66, 0.4);
+        box-shadow: 0 5px 15px rgba(255, 138, 61, 0.3);
     }
 
     .theme-toggle {
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
+        padding: 10px 20px;
+        border-radius: 25px;
         border: 2px solid var(--text-light);
-        background: transparent;
-        cursor: pointer;
+        background-color: transparent;
         display: flex;
         align-items: center;
-        justify-content: center;
-        font-size: 1.3rem;
-        transition: all 0.3s;
+        gap: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-dark);
+        transition: all 0.3s ease;
     }
 
     .theme-toggle:hover {
         border-color: var(--primary-blue);
-        transform: rotate(20deg);
+        background-color: var(--primary-blue);
+        color: white;
+        transform: translateY(-2px);
     }
 
-    /* Mobile Menu */
+    /* Hamburger Menu */
     .hamburger {
         display: none;
         flex-direction: column;
@@ -220,139 +239,113 @@
     .hamburger span {
         width: 25px;
         height: 3px;
-        background: var(--primary-blue);
-        border-radius: 3px;
-        transition: all 0.3s;
-    }
-
-    .hamburger.active span:nth-child(1) {
-        transform: rotate(45deg) translate(8px, 8px);
-    }
-
-    .hamburger.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .hamburger.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -7px);
+        background-color: var(--text-dark);
+        border-radius: 2px;
+        transition: all 0.3s ease;
     }
 
     /* Hero Section */
     .hero-section {
-        margin-top: 80px;
-        padding: 4rem 2rem;
         text-align: center;
-        background: linear-gradient(135deg, #0043CE 0%, #17B8A5 100%);
-        color: white;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .hero-section::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-        background-size: 50px 50px;
-        animation: float 20s linear infinite;
-    }
-
-    @keyframes float {
-        0% { transform: translate(0, 0); }
-        100% { transform: translate(50px, 50px); }
-    }
-
-    .hero-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        position: relative;
-        z-index: 1;
+        padding: 5rem 5% 3rem;
+        background-color: var(--white);
     }
 
     .hero-title {
-        font-size: 4rem;
-        font-weight: 900;
+        font-size: 72px;
+        font-weight: 800;
+        color: var(--primary-blue);
+        letter-spacing: -2px;
         margin-bottom: 1rem;
-        letter-spacing: 2px;
+        line-height: 1.1;
     }
 
     .hero-tagline {
-        font-size: 1.5rem;
+        font-size: 22px;
+        color: var(--text-dark);
+        font-weight: 500;
         margin-bottom: 1.5rem;
-        font-weight: 300;
+    }
+
+    .hero-tagline span {
+        color: var(--text-dark);
     }
 
     .hero-description {
-        font-size: 1.1rem;
-        max-width: 800px;
+        font-size: 17px;
+        color: var(--text-light);
+        max-width: 700px;
         margin: 0 auto 3rem;
-        opacity: 0.95;
+        line-height: 1.7;
     }
 
-    .hero-buttons {
+    .cta-buttons {
         display: flex;
         justify-content: center;
-        gap: 2rem;
+        gap: 1.5rem;
         flex-wrap: wrap;
-        margin-bottom: 3rem;
+        margin-bottom: 4rem;
     }
 
-    .hero-btn {
-        padding: 1rem 2.5rem;
-        border-radius: 50px;
-        font-size: 1.1rem;
-        font-weight: 600;
+    .cta-btn {
+        padding: 16px 40px;
+        border-radius: 30px;
         text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
         display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
-        transition: all 0.3s;
+        gap: 10px;
+        transition: all 0.3s ease;
         border: 2px solid transparent;
     }
 
-    .hero-btn.primary {
-        background: var(--primary-blue);
+    .cta-btn-primary {
+        background-color: var(--primary-blue);
         color: white;
-        border-color: var(--primary-blue);
     }
 
-    .hero-btn.secondary {
-        background: var(--primary-orange);
-        color: white;
-        border-color: var(--primary-orange);
-    }
-
-    .hero-btn.outline {
-        background: transparent;
-        color: white;
-        border-color: white;
-    }
-
-    .hero-btn:hover {
+    .cta-btn-primary:hover {
+        background-color: #0028AA;
         transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        box-shadow: 0 10px 25px rgba(0, 51, 204, 0.3);
     }
 
-    /* Product Carousel */
+    .cta-btn-secondary {
+        background-color: var(--primary-orange);
+        color: white;
+    }
+
+    .cta-btn-secondary:hover {
+        background-color: #FF7A2D;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(255, 138, 61, 0.3);
+    }
+
+    .cta-btn-outline {
+        background-color: transparent;
+        color: var(--primary-blue);
+        border: 2px solid var(--primary-blue);
+    }
+
+    .cta-btn-outline:hover {
+        background-color: var(--primary-blue);
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0, 51, 204, 0.2);
+    }
+
+    /* Product Carousel Section */
     .carousel-section {
-        padding: 3rem 2rem;
-        background: rgba(23, 184, 165, 0.05);
+        padding: 4rem 5%;
+        background-color: var(--light-gray);
     }
 
     .carousel-container {
+        position: relative;
         max-width: 1400px;
         margin: 0 auto;
-        position: relative;
-    }
-
-    .carousel-wrapper {
         overflow: hidden;
-        border-radius: 20px;
-        background: linear-gradient(135deg, rgba(0, 67, 206, 0.1) 0%, rgba(23, 184, 165, 0.1) 100%);
-        padding: 2rem;
     }
 
     .carousel-track {
@@ -361,39 +354,48 @@
         transition: transform 0.5s ease-in-out;
     }
 
-    .carousel-item {
-        min-width: 280px;
-        background: white;
-        border-radius: 15px;
-        padding: 1.5rem;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        text-align: center;
-        flex-shrink: 0;
+    .product-card {
+        min-width: 350px;
+        background-color: var(--white);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
     }
 
-    .carousel-item-img {
+    .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-image {
         width: 100%;
-        height: 200px;
-        background: var(--light-bg);
-        border-radius: 10px;
-        margin-bottom: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 3rem;
-        color: var(--primary-blue);
+        height: 300px;
+        object-fit: cover;
     }
 
-    .carousel-item-name {
+    .product-info {
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .product-name {
+        font-size: 18px;
         font-weight: 600;
         color: var(--text-dark);
-        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
     }
 
+    .product-category {
+        font-size: 14px;
+        color: var(--text-light);
+    }
+
+    /* Carousel Indicators */
     .carousel-indicators {
         display: flex;
         justify-content: center;
-        gap: 0.5rem;
+        gap: 10px;
         margin-top: 2rem;
     }
 
@@ -401,746 +403,31 @@
         width: 12px;
         height: 12px;
         border-radius: 50%;
-        background: #ddd;
+        background-color: #D0D0D0;
         cursor: pointer;
-        transition: all 0.3s;
+        transition: all 0.3s ease;
     }
 
     .indicator.active {
-        background: var(--primary-blue);
+        background-color: var(--primary-blue);
         width: 30px;
         border-radius: 6px;
     }
 
-    /* Business Divisions */
-    .business-section {
-        padding: 5rem 2rem;
-        background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 100%);
-    }
-
-    .section-title {
-        text-align: center;
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin-bottom: 3rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    .business-grid {
-        max-width: 1400px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 2rem;
-    }
-
-    .business-card {
-        background: var(--white);
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-        transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .business-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-    }
-
-    .business-card-img {
-        width: 100%;
-        height: 250px;
-        background: linear-gradient(135deg, var(--primary-blue), var(--primary-teal));
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 5rem;
-        color: white;
-    }
-
-    .business-card-content {
-        padding: 2rem;
-        text-align: center;
-    }
-
-    .business-card-title {
-        font-size: 1.8rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        color: var(--text-dark);
-    }
-
-    .business-card-desc {
-        color: var(--text-light);
-        margin-bottom: 2rem;
-        line-height: 1.6;
-    }
-
-    .business-card-btn {
-        display: inline-block;
-        padding: 0.9rem 2rem;
-        background: var(--primary-orange);
-        color: white;
-        border-radius: 30px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: all 0.3s;
-    }
-
-    .business-card-btn:hover {
-        background: #ff7a28;
-        transform: scale(1.05);
-    }
-
-    /* Shop Now Section */
-    .shop-now-section {
-        padding: 5rem 2rem;
-        background: linear-gradient(135deg, #0043CE 0%, #17B8A5 100%);
-        color: white;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .shop-now-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        align-items: center;
-    }
-
-    .shop-now-content h2 {
-        font-size: 3rem;
-        font-weight: 900;
-        margin-bottom: 1rem;
-    }
-
-    .shop-now-content h3 {
-        font-size: 1.8rem;
-        margin-bottom: 1.5rem;
-        font-weight: 300;
-    }
-
-    .shop-now-content p {
-        font-size: 1.1rem;
-        margin-bottom: 2rem;
-        opacity: 0.95;
-    }
-
-    .coming-soon-btn {
-        display: inline-block;
-        padding: 1.2rem 3rem;
-        background: rgba(255,255,255,0.2);
-        border: 2px solid white;
-        border-radius: 50px;
-        color: white;
-        font-size: 1.3rem;
-        font-weight: 700;
-        text-decoration: none;
-        transition: all 0.3s;
-    }
-
-    .coming-soon-btn:hover {
-        background: white;
-        color: var(--primary-blue);
-        transform: scale(1.05);
-    }
-
-    .shop-now-visual {
-        position: relative;
-    }
-
-    .phone-mockup {
-        width: 100%;
-        max-width: 400px;
-        margin: 0 auto;
-        position: relative;
-        aspect-ratio: 9/19;
-        background: #1a1a1a;
-        border-radius: 40px;
-        padding: 15px;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    }
-
-    .phone-screen {
-        width: 100%;
-        height: 100%;
-        background: white;
-        border-radius: 30px;
-        overflow: hidden;
-        position: relative;
-    }
-
-    .phone-notch {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 120px;
-        height: 25px;
-        background: #1a1a1a;
-        border-radius: 0 0 20px 20px;
-    }
-
-    .phone-content {
-        padding: 40px 15px 15px;
-        height: 100%;
-        overflow-y: auto;
-    }
-
-    .marketplace-header {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .marketplace-logo {
-        width: 40px;
-        height: 40px;
-        background: var(--primary-blue);
-        border-radius: 50%;
-        margin: 0 auto 10px;
-    }
-
-    .marketplace-title {
-        font-size: 1.2rem;
-        font-weight: 700;
-        color: var(--text-dark);
-    }
-
-    .marketplace-tabs {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 15px;
-        font-size: 0.8rem;
-    }
-
-    .tab {
-        padding: 5px 15px;
-        background: var(--primary-blue);
-        color: white;
-        border-radius: 20px;
-    }
-
-    .product-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-    }
-
-    .product-item {
-        background: var(--light-bg);
-        border-radius: 10px;
-        padding: 10px;
-        text-align: center;
-    }
-
-    .product-img {
-        width: 100%;
-        height: 60px;
-        background: white;
-        border-radius: 8px;
-        margin-bottom: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-    }
-
-    .product-name {
-        font-size: 0.7rem;
-        font-weight: 600;
-        color: var(--text-dark);
-    }
-
-    .product-price {
-        font-size: 0.75rem;
-        color: var(--primary-blue);
-        font-weight: 700;
-    }
-
-    .cart-illustration {
-        position: absolute;
-        left: -100px;
-        bottom: 50px;
-        width: 250px;
-        opacity: 0.9;
-    }
-
-    /* About Section */
-    .about-section {
-        padding: 5rem 2rem;
-        background: var(--light-bg);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .about-section::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 100%;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.3" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,122.7C1248,107,1344,85,1392,74.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat;
-        background-size: cover;
-        opacity: 0.5;
-    }
-
-    .about-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        position: relative;
-        z-index: 1;
-    }
-
-    .about-content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        align-items: center;
-    }
-
-    .about-text h2 {
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin-bottom: 2rem;
-        color: var(--text-dark);
-    }
-
-    .about-subsection {
-        margin-bottom: 2rem;
-    }
-
-    .about-subsection h3 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-    }
-
-    .about-subsection.story h3 {
-        color: var(--primary-blue);
-    }
-
-    .about-subsection.mission h3 {
-        color: var(--primary-teal);
-    }
-
-    .about-subsection.vision h3 {
-        color: var(--primary-orange);
-    }
-
-    .about-subsection p {
-        color: var(--text-light);
-        line-height: 1.8;
-    }
-
-    .founder-card {
-        background: white;
-        border-radius: 20px;
-        padding: 2rem;
-        text-align: center;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-
-    .founder-img {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, var(--primary-blue), var(--primary-teal));
-        margin: 0 auto 1.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 4rem;
-        color: white;
-        border: 5px solid var(--light-bg);
-    }
-
-    .founder-name {
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: var(--primary-blue);
-        margin-bottom: 0.5rem;
-    }
-
-    .founder-title {
-        color: var(--primary-teal);
-        font-weight: 600;
-        margin-bottom: 1rem;
-    }
-
-    .founder-bio {
-        color: var(--text-light);
-        line-height: 1.7;
-    }
-
-    /* FAQ Section */
-    .faq-section {
-        padding: 5rem 2rem;
-        background: white;
-    }
-
-    .faq-container {
-        max-width: 900px;
-        margin: 0 auto;
-        text-align: center;
-    }
-
-    .faq-title {
-        font-size: 3rem;
-        font-weight: 800;
-        color: var(--primary-orange);
-        margin-bottom: 1rem;
-    }
-
-    .faq-subtitle {
-        color: var(--text-light);
-        margin-bottom: 3rem;
-    }
-
-    .view-faq-btn {
-        display: inline-block;
-        padding: 1rem 3rem;
-        background: var(--primary-blue);
-        color: white;
-        border-radius: 30px;
-        text-decoration: none;
-        font-weight: 600;
-        margin-bottom: 3rem;
-        transition: all 0.3s;
-    }
-
-    .view-faq-btn:hover {
-        background: #003399;
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0,67,206,0.3);
-    }
-
-    .legal-links {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        flex-wrap: wrap;
-    }
-
-    .legal-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 1rem 2rem;
-        background: var(--light-bg);
-        border-radius: 10px;
-        text-decoration: none;
-        color: var(--text-dark);
-        font-weight: 600;
-        transition: all 0.3s;
-    }
-
-    .legal-link:hover {
-        background: var(--primary-blue);
-        color: white;
-        transform: translateY(-3px);
-    }
-
-    /* Contact Section */
-    .contact-section {
-        padding: 5rem 2rem;
-        background: var(--light-bg);
-    }
-
-    .contact-container {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .contact-title {
-        text-align: center;
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin-bottom: 3rem;
-    }
-
-    .newsletter-section {
-        text-align: center;
-        margin-bottom: 4rem;
-    }
-
-    .newsletter-section h3 {
-        font-size: 1.8rem;
-        color: var(--primary-blue);
-        margin-bottom: 1rem;
-    }
-
-    .newsletter-section p {
-        color: var(--text-light);
-        margin-bottom: 2rem;
-    }
-
-    .newsletter-form {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        max-width: 600px;
-        margin: 0 auto;
-    }
-
-    .newsletter-input {
-        flex: 1;
-        padding: 1rem 1.5rem;
-        border: 2px solid #ddd;
-        border-radius: 30px;
-        font-size: 1rem;
-        outline: none;
-        transition: border-color 0.3s;
-    }
-
-    .newsletter-input:focus {
-        border-color: var(--primary-teal);
-    }
-
-    .newsletter-btn {
-        padding: 1rem 2.5rem;
-        background: var(--primary-teal);
-        color: white;
-        border: none;
-        border-radius: 30px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s;
-    }
-
-    .newsletter-btn:hover {
-        background: #14a593;
-        transform: scale(1.05);
-    }
-
-    .contact-info-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        margin-bottom: 3rem;
-    }
-
-    .contact-info-card {
-        background: white;
-        padding: 2rem;
-        border-radius: 15px;
-        text-align: center;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        transition: transform 0.3s;
-    }
-
-    .contact-info-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .contact-icon {
-        width: 60px;
-        height: 60px;
-        background: var(--primary-blue);
-        border-radius: 50%;
-        margin: 0 auto 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        color: white;
-    }
-
-    .contact-info-title {
-        font-size: 1.2rem;
-        font-weight: 700;
-        color: var(--primary-blue);
-        margin-bottom: 0.5rem;
-    }
-
-    .contact-info-text {
-        color: var(--text-light);
-    }
-
-    .contact-info-text a {
-        color: var(--text-dark);
-        text-decoration: none;
-    }
-
-    .contact-info-text a:hover {
-        color: var(--primary-blue);
-    }
-
-    .social-section {
-        text-align: center;
-    }
-
-    .social-icons {
-        display: flex;
-        justify-content: center;
-        gap: 1.5rem;
-        margin-top: 2rem;
-    }
-
-    .social-icon {
-        width: 50px;
-        height: 50px;
-        background: var(--primary-blue);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        text-decoration: none;
-        font-size: 1.3rem;
-        transition: all 0.3s;
-    }
-
-    .social-icon:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0,67,206,0.3);
-    }
-
-    .social-icon.facebook { background: #1877f2; }
-    .social-icon.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-    .social-icon.twitter { background: #1da1f2; }
-    .social-icon.tiktok { background: #000000; }
-    .social-icon.whatsapp { background: #25d366; }
-
-    /* Footer */
-    .footer {
-        background: #1a1a1a;
-        color: white;
-        padding: 3rem 2rem 1rem;
-    }
-
-    .footer-container {
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-
-    .footer-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 3rem;
-        margin-bottom: 2rem;
-    }
-
-    .footer-column h3 {
-        font-size: 1.3rem;
-        margin-bottom: 1rem;
-        color: var(--primary-teal);
-    }
-
-    .footer-column p,
-    .footer-column a {
-        color: #aaa;
-        text-decoration: none;
-        display: block;
-        margin-bottom: 0.5rem;
-        line-height: 1.6;
-    }
-
-    .footer-column a:hover {
-        color: var(--primary-teal);
-    }
-
-    .footer-bottom {
-        border-top: 1px solid #333;
-        padding-top: 2rem;
-        text-align: center;
-    }
-
-    .footer-credits {
-        color: #888;
-        margin-bottom: 1rem;
-    }
-
-    .footer-credits a {
-        color: var(--primary-teal);
-        text-decoration: none;
-    }
-
-    .footer-credits a:hover {
-        text-decoration: underline;
-    }
-
-    /* Cookie Popup */
-    .cookie-popup {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: white;
-        box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
-        padding: 2rem;
-        z-index: 2000;
-        transform: translateY(100%);
-        transition: transform 0.3s;
-    }
-
-    .cookie-popup.show {
-        transform: translateY(0);
-    }
-
-    .cookie-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 2rem;
-        flex-wrap: wrap;
-    }
-
-    .cookie-text {
-        flex: 1;
-        min-width: 250px;
-    }
-
-    .cookie-text h3 {
-        margin-bottom: 0.5rem;
-    }
-
-    .cookie-buttons {
-        display: flex;
-        gap: 1rem;
-    }
-
-    .cookie-btn {
-        padding: 0.8rem 2rem;
-        border: none;
-        border-radius: 25px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s;
-    }
-
-    .cookie-btn.accept {
-        background: var(--primary-blue);
-        color: white;
-    }
-
-    .cookie-btn.reject {
-        background: var(--light-bg);
-        color: var(--text-dark);
-    }
-
-    .cookie-btn:hover {
-        transform: scale(1.05);
-    }
-
     /* Responsive Design */
-    @media (max-width: 968px) {
+    @media (max-width: 1024px) {
         .nav-menu {
             position: fixed;
             top: 80px;
             left: -100%;
-            width: 100%;
-            background: white;
             flex-direction: column;
+            background-color: var(--white);
+            width: 100%;
             padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: left 0.3s ease;
             gap: 1.5rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: left 0.3s;
+            align-items: flex-start;
         }
 
         .nav-menu.active {
@@ -1151,525 +438,382 @@
             display: flex;
         }
 
+        .services-dropdown {
+            width: 100%;
+        }
+
+        .dropdown-menu {
+            position: static;
+            box-shadow: none;
+            margin-top: 0;
+            margin-left: 20px;
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .services-dropdown.active .dropdown-menu {
+            max-height: 300px;
+        }
+
+        .dropdown-menu li a {
+            padding: 10px 15px;
+        }
+
         .hero-title {
-            font-size: 2.5rem;
+            font-size: 48px;
         }
 
         .hero-tagline {
-            font-size: 1.2rem;
+            font-size: 18px;
         }
 
-        .business-grid {
-            grid-template-columns: 1fr;
+        .hero-description {
+            font-size: 15px;
         }
 
-        .shop-now-container {
-            grid-template-columns: 1fr;
-        }
-
-        .about-content {
-            grid-template-columns: 1fr;
-        }
-
-        .phone-mockup {
-            max-width: 300px;
-        }
-
-        .newsletter-form {
-            flex-direction: column;
+        .product-card {
+            min-width: 280px;
         }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
+        .navbar {
+            padding: 1rem 4%;
+        }
+
+        .hero-section {
+            padding: 3rem 4% 2rem;
+        }
+
         .hero-title {
-            font-size: 2rem;
+            font-size: 36px;
         }
 
-        .section-title {
-            font-size: 1.8rem;
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
         }
 
-        .carousel-item {
-            min-width: 220px;
+        .cta-btn {
+            width: 100%;
+            max-width: 300px;
+            justify-content: center;
+        }
+
+        .product-card {
+            min-width: 250px;
+        }
+
+        .carousel-section {
+            padding: 3rem 4%;
         }
     }
 </style>
 ```
 
 </head>
-<body class="light-mode">
-    <!-- Cookie Popup -->
-    <div class="cookie-popup" id="cookiePopup">
-        <div class="cookie-content">
-            <div class="cookie-text">
-                <h3>We Value Your Privacy</h3>
-                <p>We use cookies to enhance your browsing experience and provide personalized content. By clicking "Accept All", you consent to our use of cookies.</p>
-            </div>
-            <div class="cookie-buttons">
-                <button class="cookie-btn accept" onclick="acceptCookies()">Accept All</button>
-                <button class="cookie-btn reject" onclick="rejectCookies()">Reject Non-Essential</button>
-            </div>
-        </div>
-    </div>
-
-```
-<!-- Header -->
-<header class="header">
-    <nav class="nav-container">
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
         <div class="logo-section">
-            <div class="logo-img">VL</div>
+            <div class="logo-circle">VL</div>
             <span class="logo-text">vinceslink</span>
         </div>
 
-        <div class="hamburger" onclick="toggleMobileMenu()">
+```
+    <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" class="active">Home</a></li>
+        <li class="services-dropdown" id="servicesDropdown">
+            <a href="#services" id="servicesLink">Services <span class="dropdown-icon">▼</span></a>
+            <ul class="dropdown-menu">
+                <li><a href="#gadgets">Gadget Hub</a></li>
+                <li><a href="#superstore">Super Store</a></li>
+                <li><a href="#realty">Real Estate</a></li>
+            </ul>
+        </li>
+        <li><a href="#shop">Shop Now</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+        <a href="#signup" class="signup-btn" title="Coming Soon - E-Commerce Portal">Sign Up</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <span id="themeIcon">🌙</span>
+            <span id="themeText">Dark</span>
+        </button>
+        <div class="hamburger" id="hamburger">
             <span></span>
             <span></span>
             <span></span>
         </div>
-
-        <ul class="nav-menu" id="navMenu">
-            <li><a href="#home" class="nav-link active">Home</a></li>
-            <li class="services-dropdown">
-                <a class="nav-link dropdown-toggle" onclick="toggleDropdown(event)">
-                    Services <span>▼</span>
-                </a>
-                <div class="dropdown-menu" id="servicesDropdown">
-                    <a href="gadget-hub.html" class="dropdown-item">Gadget Hub</a>
-                    <a href="super-store.html" class="dropdown-item">Super Store</a>
-                    <a href="real-estate.html" class="dropdown-item">Real Estate</a>
-                </div>
-            </li>
-            <li><a href="#shop-now" class="nav-link">Shop Now</a></li>
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#faq" class="nav-link">FAQ</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-            <li><a href="#signup" class="sign-up-btn">Sign Up</a></li>
-            <li>
-                <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">☀️</button>
-            </li>
-        </ul>
-    </nav>
-</header>
+    </div>
+</nav>
 
 <!-- Hero Section -->
 <section class="hero-section" id="home">
-    <div class="hero-content">
-        <h1 class="hero-title">VINCESLINK</h1>
-        <p class="hero-tagline">Everyday Essentials • Gadgets • Realty</p>
-        <p class="hero-description">
-            Everyday essentials, smart gadgets, and trusted real estate solutions—all in one place with Vinceslink.
-        </p>
-        <div class="hero-buttons">
-            <a href="gadget-hub.html" class="hero-btn primary">
-                ⚡ Explore Gadgets
-            </a>
-            <a href="super-store.html" class="hero-btn secondary">
-                🛒 Shop Essentials
-            </a>
-            <a href="real-estate.html" class="hero-btn outline">
-                🏠 View Properties
-            </a>
-        </div>
+    <h1 class="hero-title">VINCESLINK</h1>
+    <p class="hero-tagline">Everyday Essentials • Gadgets • Realty</p>
+    <p class="hero-description">
+        Everyday essentials, smart gadgets, and trusted real estate solutions—all in one place with Vinceslink.
+    </p>
+
+    <div class="cta-buttons">
+        <a href="#gadgets" class="cta-btn cta-btn-primary">
+            ⚡ Explore Gadgets
+        </a>
+        <a href="#superstore" class="cta-btn cta-btn-secondary">
+            🛒 Shop Essentials
+        </a>
+        <a href="#realty" class="cta-btn cta-btn-outline">
+            🏠 View Properties
+        </a>
     </div>
 </section>
 
-<!-- Product Carousel -->
+<!-- Product Carousel Section -->
 <section class="carousel-section">
     <div class="carousel-container">
-        <div class="carousel-wrapper">
-            <div class="carousel-track" id="carouselTrack">
-                <div class="carousel-item">
-                    <div class="carousel-item-img">🔌</div>
-                    <h4 class="carousel-item-name">PF-014 Charger</h4>
+        <div class="carousel-track" id="carouselTrack">
+            <!-- Product Card 1: Fast Charger -->
+            <div class="product-card">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Fast 9A Charger" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">PF-014 Fast 9A Charger</h3>
+                    <p class="product-category">Gadgets • Chargers</p>
                 </div>
-                <div class="carousel-item">
-                    <div class="carousel-item-img">🎧</div>
-                    <h4 class="carousel-item-name">P-31 Headset</h4>
+            </div>
+
+            <!-- Product Card 2: Headset -->
+            <div class="product-card">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="P-31 Headset HD Sound" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">P-31 Headset HD Sound</h3>
+                    <p class="product-category">Gadgets • Audio</p>
                 </div>
-                <div class="carousel-item">
-                    <div class="carousel-item-img">🍦</div>
-                    <h4 class="carousel-item-name">FanIce</h4>
+            </div>
+
+            <!-- Product Card 3: Ice Cream -->
+            <div class="product-card">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="FanIce Ice Cream" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">FanIce Ice Cream</h3>
+                    <p class="product-category">Super Store • Frozen</p>
                 </div>
-                <div class="carousel-item">
-                    <div class="carousel-item-img">💄</div>
-                    <h4 class="carousel-item-name">Cosmetics</h4>
+            </div>
+
+            <!-- Product Card 4: Cosmetics -->
+            <div class="product-card">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Premium Cosmetics" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">Premium Cosmetics</h3>
+                    <p class="product-category">Super Store • Beauty</p>
                 </div>
-                <div class="carousel-item">
-                    <div class="carousel-item-img">🏞️</div>
-                    <h4 class="carousel-item-name">Land</h4>
+            </div>
+
+            <!-- Product Card 5: Land Property -->
+            <div class="product-card">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Land Property" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">Prime Land Property</h3>
+                    <p class="product-category">Real Estate • Land</p>
                 </div>
-                <div class="carousel-item">
-                    <div class="carousel-item-img">🏠</div>
-                    <h4 class="carousel-item-name">House</h4>
+            </div>
+
+            <!-- Product Card 6: House -->
+            <div class="product-card">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Residential House" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">Modern Residential House</h3>
+                    <p class="product-category">Real Estate • Housing</p>
                 </div>
             </div>
         </div>
+
         <div class="carousel-indicators">
-            <span class="indicator active"></span>
-            <span class="indicator"></span>
-            <span class="indicator"></span>
-            <span class="indicator"></span>
-            <span class="indicator"></span>
+            <div class="indicator active" data-slide="0"></div>
+            <div class="indicator" data-slide="1"></div>
+            <div class="indicator" data-slide="2"></div>
+            <div class="indicator" data-slide="3"></div>
         </div>
     </div>
 </section>
-
-<!-- Business Divisions -->
-<section class="business-section">
-    <h2 class="section-title">Our Business Divisions</h2>
-    <div class="business-grid">
-        <div class="business-card">
-            <div class="business-card-img">📱</div>
-            <div class="business-card-content">
-                <h3 class="business-card-title">Vinceslink Gadget Hub</h3>
-                <p class="business-card-desc">Your one-stop destination for smart gadgets and cutting-edge electronics.</p>
-                <a href="gadget-hub.html" class="business-card-btn">View Products</a>
-            </div>
-        </div>
-        <div class="business-card">
-            <div class="business-card-img">🛒</div>
-            <div class="business-card-content">
-                <h3 class="business-card-title">Vinceslink Super Store</h3>
-                <p class="business-card-desc">Daily essentials and premium groceries delivered to your doorstep.</p>
-                <a href="super-store.html" class="business-card-btn">Shop Essentials</a>
-            </div>
-        </div>
-        <div class="business-card">
-            <div class="business-card-img">🏘️</div>
-            <div class="business-card-content">
-                <h3 class="business-card-title">Vinceslink Realty</h3>
-                <p class="business-card-desc">Trusted real estate solutions for buying, selling, and investing.</p>
-                <a href="real-estate.html" class="business-card-btn">Book Consultation</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Shop Now / Marketplace -->
-<section class="shop-now-section" id="shop-now">
-    <div class="shop-now-container">
-        <div class="shop-now-content">
-            <h2>MARKETPLACE</h2>
-            <h3>Ready to shop?</h3>
-            <p>Experience seamless shopping with our upcoming e-commerce platform</p>
-            <a href="#signup" class="coming-soon-btn">🛍️ COMING SOON 😊</a>
-        </div>
-        <div class="shop-now-visual">
-            <div class="phone-mockup">
-                <div class="phone-screen">
-                    <div class="phone-notch"></div>
-                    <div class="phone-content">
-                        <div class="marketplace-header">
-                            <div class="marketplace-logo"></div>
-                            <div class="marketplace-title">VINCESLINK</div>
-                            <div class="marketplace-tabs">
-                                <span class="tab">Marketplace</span>
-                                <span>History</span>
-                                <span>Cart</span>
-                                <span>Profile</span>
-                            </div>
-                        </div>
-                        <div class="product-grid">
-                            <div class="product-item">
-                                <div class="product-img">📷</div>
-                                <div class="product-name">Wireless Ca...</div>
-                                <div class="product-price">$39</div>
-                            </div>
-                            <div class="product-item">
-                                <div class="product-img">🎧</div>
-                                <div class="product-name">Wireless E...</div>
-                                <div class="product-price">$99</div>
-                            </div>
-                            <div class="product-item">
-                                <div class="product-img">🍎</div>
-                                <div class="product-name">Apple</div>
-                                <div class="product-price">$1.29</div>
-                            </div>
-                            <div class="product-item">
-                                <div class="product-img">🔋</div>
-                                <div class="product-name">Wireless C...</div>
-                                <div class="product-price">$39</div>
-                            </div>
-                            <div class="product-item">
-                                <div class="product-img">🔌</div>
-                                <div class="product-name">USB-C</div>
-                                <div class="product-price">$19</div>
-                            </div>
-                            <div class="product-item">
-                                <div class="product-img">🥫</div>
-                                <div class="product-name">Cream Jar</div>
-                                <div class="product-price">$24</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- About Section -->
-<section class="about-section" id="about">
-    <div class="about-container">
-        <h2 class="section-title">About Vinceslink</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <div class="about-subsection story">
-                    <h3>Our Story</h3>
-                    <p>Vinceslink was founded with a vision to simplify modern living by bringing together three essential aspects of daily life: technology, everyday essentials, and property solutions. What started as a passion for providing quality gadgets has evolved into a multi-industry brand committed to excellence and customer satisfaction.</p>
-                </div>
-                <div class="about-subsection mission">
-                    <h3>Our Mission</h3>
-                    <p>To deliver exceptional value through quality products and reliable services while maintaining transparency, trust, and convenience in every customer interaction. We strive to be the go-to platform where technology meets lifestyle and opportunity meets reality.</p>
-                </div>
-                <div class="about-subsection vision">
-                    <h3>Our Vision</h3>
-                    <p>To become Nigeria's leading multi-industry ecosystem, where customers can access authentic gadgets, essential household items, and trusted real estate solutions—all with the assurance of quality and integrity.</p>
-                </div>
-            </div>
-            <div class="founder-card">
-                <div class="founder-img">VN</div>
-                <h3 class="founder-name">Vincent</h3>
-                <p class="founder-title">Founder & CEO</p>
-                <p class="founder-bio">Driven by a passion for innovation and service excellence, Vincent established Vinceslink to bridge the gap between quality products and accessible services in Nigeria's growing market. His vision continues to guide our commitment to customer satisfaction and business integrity.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- FAQ Section -->
-<section class="faq-section" id="faq">
-    <div class="faq-container">
-        <h2 class="faq-title">FAQ</h2>
-        <p class="faq-subtitle">Have questions? We've got answers! Click below to view all frequently asked questions.</p>
-        <a href="#" class="view-faq-btn">View All FAQs</a>
-        <div class="legal-links">
-            <a href="#" class="legal-link">
-                📄 Terms & Conditions
-            </a>
-            <a href="#" class="legal-link">
-                🔒 Privacy Policy
-            </a>
-            <a href="#contact" class="legal-link">
-                💬 Contact Support
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- Contact Section -->
-<section class="contact-section" id="contact">
-    <div class="contact-container">
-        <h2 class="contact-title">Get In Touch</h2>
-        
-        <div class="newsletter-section">
-            <h3>Stay Updated</h3>
-            <p>Subscribe to our newsletter for exclusive deals, new arrivals, and property listings</p>
-            <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
-                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
-                <button type="submit" class="newsletter-btn">Subscribe</button>
-            </form>
-        </div>
-
-        <div class="contact-info-grid">
-            <div class="contact-info-card">
-                <div class="contact-icon">📞</div>
-                <h4 class="contact-info-title">Call Us</h4>
-                <p class="contact-info-text">
-                    <a href="tel:+2349078683552">+234 907 868 3552</a>
-                </p>
-            </div>
-            <div class="contact-info-card">
-                <div class="contact-icon">✉️</div>
-                <h4 class="contact-info-title">Email Us</h4>
-                <p class="contact-info-text">
-                    <a href="mailto:vinceslink@gmail.com">vinceslink@gmail.com</a>
-                </p>
-            </div>
-            <div class="contact-info-card">
-                <div class="contact-icon">📍</div>
-                <h4 class="contact-info-title">Gadgets Hub</h4>
-                <p class="contact-info-text">
-                    No. 12 Ijoko Rd, Opposite African Church, Sango Ota, Ogun State
-                </p>
-            </div>
-            <div class="contact-info-card">
-                <div class="contact-icon">🏠</div>
-                <h4 class="contact-info-title">Super Store / Head Office</h4>
-                <p class="contact-info-text">
-                    No. 91 Ishaka Road, Ijako, Ogun State
-                </p>
-            </div>
-        </div>
-
-        <div class="social-section">
-            <h3>Follow Us</h3>
-            <div class="social-icons">
-                <a href="https://www.facebook.com/share/17XjXSBeR1/?mibextid=wwXIfr" class="social-icon facebook" target="_blank">f</a>
-                <a href="https://www.instagram.com/vinceslink_1" class="social-icon instagram" target="_blank">📷</a>
-                <a href="#" class="social-icon twitter" target="_blank">🐦</a>
-                <a href="https://www.tiktok.com/@vinceslink1?_r=1&_t=ZS-93wGhXnvipZ" class="social-icon tiktok" target="_blank">🎵</a>
-                <a href="https://wa.me/message/5XF6PFQZNCLTA1" class="social-icon whatsapp" target="_blank">💬</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="footer">
-    <div class="footer-container">
-        <div class="footer-grid">
-            <div class="footer-column">
-                <h3>About Vinceslink</h3>
-                <p>A multi-industry brand focused on providing quality gadgets, daily household essentials, and reliable real estate consultation.</p>
-            </div>
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <a href="#home">Home</a>
-                <a href="gadget-hub.html">Gadget Hub</a>
-                <a href="super-store.html">Super Store</a>
-                <a href="real-estate.html">Real Estate</a>
-                <a href="#about">About Us</a>
-            </div>
-            <div class="footer-column">
-                <h3>Our Locations</h3>
-                <p><strong>Head Office:</strong> No. 91 Ishaka Road, Ijako, Ogun State</p>
-                <p><strong>Gadget Hub:</strong> No. 12 Ijoko Rd, Sango Ota, Ogun State</p>
-                <p><strong>Branch:</strong> No. 42 Community Road, Egan Ijoko, Ogun State</p>
-            </div>
-            <div class="footer-column">
-                <h3>Contact</h3>
-                <p>Phone: +234 907 868 3552</p>
-                <p>Email: vinceslink@gmail.com</p>
-                <p>Monday - Saturday: 8AM - 8PM</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p class="footer-credits">
-                In collaboration with Paul Feng | Built with 🤍 by <a href="#" target="_blank">Japheth</a>
-            </p>
-            <p>&copy; 2024 Vinceslink. All rights reserved.</p>
-        </div>
-    </div>
-</footer>
 
 <script>
-    // Theme Toggle
-    function toggleTheme() {
-        const body = document.body;
-        const themeToggle = document.getElementById('themeToggle');
-        
-        if (body.classList.contains('light-mode')) {
-            body.classList.remove('light-mode');
-            body.classList.add('dark-mode');
-            themeToggle.textContent = '🌙';
-            localStorage.setItem('theme', 'dark');
-        } else {
-            body.classList.remove('dark-mode');
-            body.classList.add('light-mode');
-            themeToggle.textContent = '☀️';
-            localStorage.setItem('theme', 'light');
-        }
-    }
+    // Hamburger Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
 
-    // Load saved theme
-    window.addEventListener('DOMContentLoaded', () => {
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        const body = document.body;
-        const themeToggle = document.getElementById('themeToggle');
-        
-        if (savedTheme === 'dark') {
-            body.classList.remove('light-mode');
-            body.classList.add('dark-mode');
-            themeToggle.textContent = '🌙';
-        }
-    });
-
-    // Mobile Menu Toggle
-    function toggleMobileMenu() {
-        const navMenu = document.getElementById('navMenu');
-        const hamburger = document.querySelector('.hamburger');
+    hamburger.addEventListener('click', () => {
         navMenu.classList.toggle('active');
-        hamburger.classList.toggle('active');
-    }
+    });
 
-    // Dropdown Toggle
-    function toggleDropdown(event) {
-        event.preventDefault();
-        const dropdown = document.getElementById('servicesDropdown');
-        dropdown.classList.toggle('show');
-    }
+    // Services Dropdown Toggle for Mobile
+    const servicesDropdown = document.getElementById('servicesDropdown');
+    const servicesLink = document.getElementById('servicesLink');
 
-    // Close dropdown when clicking outside
-    window.addEventListener('click', (e) => {
-        if (!e.target.matches('.dropdown-toggle') && !e.target.closest('.dropdown-toggle')) {
-            const dropdown = document.getElementById('servicesDropdown');
-            if (dropdown.classList.contains('show')) {
-                dropdown.classList.remove('show');
-            }
+    servicesLink.addEventListener('click', (e) => {
+        // Only prevent default and toggle on mobile
+        if (window.innerWidth <= 1024) {
+            e.preventDefault();
+            servicesDropdown.classList.toggle('active');
         }
     });
 
-    // Carousel Auto-slide
-    let currentSlide = 0;
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeText = document.getElementById('themeText');
+    const body = document.body;
+
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        if (body.classList.contains('dark-mode')) {
+            themeIcon.textContent = '☀️';
+            themeText.textContent = 'Light';
+        } else {
+            themeIcon.textContent = '🌙';
+            themeText.textContent = 'Dark';
+        }
+    });
+
+    // Product Carousel
     const carouselTrack = document.getElementById('carouselTrack');
     const indicators = document.querySelectorAll('.indicator');
-    const totalSlides = 5;
+    let currentSlide = 0;
+    let autoSlideInterval;
 
-    function updateCarousel() {
-        const slideWidth = 300; // 280px item + 20px gap
-        carouselTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+    // Touch/Swipe variables
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let isDragging = false;
+    let startX = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+
+    function updateCarousel(slideIndex) {
+        const cardWidth = 350; // min-width of product card
+        const gap = 32; // 2rem gap
+        const offset = slideIndex * (cardWidth + gap);
+        
+        carouselTrack.style.transform = `translateX(-${offset}px)`;
         
         indicators.forEach((indicator, index) => {
-            indicator.classList.toggle('active', index === currentSlide);
+            indicator.classList.toggle('active', index === slideIndex);
         });
     }
 
     function nextSlide() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateCarousel();
+        currentSlide = (currentSlide + 1) % indicators.length;
+        updateCarousel(currentSlide);
     }
 
-    // Auto-slide every 4 seconds
-    setInterval(nextSlide, 4000);
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + indicators.length) % indicators.length;
+        updateCarousel(currentSlide);
+    }
 
-    // Indicator click
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(nextSlide, 4000); // Change slide every 4 seconds
+    }
+
+    function stopAutoSlide() {
+        clearInterval(autoSlideInterval);
+    }
+
+    // Manual indicator click
     indicators.forEach((indicator, index) => {
         indicator.addEventListener('click', () => {
             currentSlide = index;
-            updateCarousel();
+            updateCarousel(currentSlide);
+            stopAutoSlide();
+            startAutoSlide(); // Restart auto-slide after manual interaction
         });
     });
 
-    // Cookie Popup
-    window.addEventListener('DOMContentLoaded', () => {
-        const cookieAccepted = localStorage.getItem('cookieAccepted');
-        if (!cookieAccepted) {
-            setTimeout(() => {
-                document.getElementById('cookiePopup').classList.add('show');
-            }, 1000);
+    // Touch/Swipe Events
+    carouselTrack.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        stopAutoSlide();
+    });
+
+    carouselTrack.addEventListener('touchmove', (e) => {
+        touchEndX = e.touches[0].clientX;
+    });
+
+    carouselTrack.addEventListener('touchend', () => {
+        handleSwipe();
+        startAutoSlide();
+    });
+
+    // Mouse drag events for desktop
+    carouselTrack.addEventListener('mousedown', (e) => {
+        touchStartX = e.clientX;
+        isDragging = true;
+        stopAutoSlide();
+        carouselTrack.style.cursor = 'grabbing';
+    });
+
+    carouselTrack.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        touchEndX = e.clientX;
+    });
+
+    carouselTrack.addEventListener('mouseup', () => {
+        if (isDragging) {
+            handleSwipe();
+            isDragging = false;
+            carouselTrack.style.cursor = 'grab';
+            startAutoSlide();
         }
     });
 
-    function acceptCookies() {
-        localStorage.setItem('cookieAccepted', 'true');
-        document.getElementById('cookiePopup').classList.remove('show');
+    carouselTrack.addEventListener('mouseleave', () => {
+        if (isDragging) {
+            isDragging = false;
+            carouselTrack.style.cursor = 'grab';
+            startAutoSlide();
+        }
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50; // Minimum swipe distance
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                // Swipe left - next slide
+                nextSlide();
+            } else {
+                // Swipe right - previous slide
+                prevSlide();
+            }
+        }
+
+        touchStartX = 0;
+        touchEndX = 0;
     }
 
-    function rejectCookies() {
-        localStorage.setItem('cookieAccepted', 'rejected');
-        document.getElementById('cookiePopup').classList.remove('show');
-    }
+    // Pause carousel on hover
+    carouselTrack.addEventListener('mouseenter', () => {
+        if (!isDragging) stopAutoSlide();
+        carouselTrack.style.cursor = 'grab';
+    });
+    
+    carouselTrack.addEventListener('mouseleave', () => {
+        if (!isDragging) startAutoSlide();
+        carouselTrack.style.cursor = 'default';
+    });
 
-    // Newsletter Subscription
-    function subscribeNewsletter(event) {
-        event.preventDefault();
-        const email = event.target.querySelector('input').value;
-        alert(`Thank you for subscribing with ${email}! You'll receive updates soon.`);
-        event.target.reset();
-    }
+    // Start auto-slide on page load
+    startAutoSlide();
 
-    // Smooth Scroll
+    // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -1679,33 +823,8 @@
                     behavior: 'smooth',
                     block: 'start'
                 });
-                // Close mobile menu if open
-                const navMenu = document.getElementById('navMenu');
-                const hamburger = document.querySelector('.hamburger');
+                // Close mobile menu after clicking
                 navMenu.classList.remove('active');
-                hamburger.classList.remove('active');
-            }
-        });
-    });
-
-    // Active Nav Link on Scroll
-    window.addEventListener('scroll', () => {
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
-        
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (scrollY >= (sectionTop - 100)) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
             }
         });
     });
