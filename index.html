@@ -14,60 +14,82 @@
 
 ```
     :root {
-        --primary-blue: #0033cc;
-        --secondary-blue: #1a5cff;
-        --teal: #20b2aa;
-        --orange: #ff8c42;
-        --dark-gray: #2b2b2b;
-        --light-gray: #f5f5f5;
-        --white: #ffffff;
+        --primary-blue: #0043CE;
+        --primary-teal: #17B8A5;
+        --primary-orange: #FF8C42;
+        --dark-gray: #2C3E50;
+        --light-bg: #F8F9FA;
+        --white: #FFFFFF;
         --text-dark: #333333;
         --text-light: #666666;
     }
 
     body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         line-height: 1.6;
         color: var(--text-dark);
-        background: var(--white);
-        transition: background 0.3s ease, color 0.3s ease;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.light-mode {
+        background-color: var(--white);
+        color: var(--text-dark);
     }
 
     body.dark-mode {
-        --white: #1a1a1a;
-        --light-gray: #2b2b2b;
-        --text-dark: #e0e0e0;
-        --text-light: #b0b0b0;
-        --dark-gray: #e0e0e0;
+        background-color: #1a1a1a;
+        color: #e0e0e0;
     }
 
-    /* Header & Navigation */
-    header {
+    body.dark-mode .header {
+        background-color: #2a2a2a;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    body.dark-mode .nav-link {
+        color: #e0e0e0;
+    }
+
+    body.dark-mode .business-card {
+        background-color: #2a2a2a;
+    }
+
+    body.dark-mode .faq-section,
+    body.dark-mode .contact-section {
+        background-color: #1a1a1a;
+    }
+
+    body.dark-mode .footer {
+        background-color: #0a0a0a;
+    }
+
+    /* Header Styles */
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
         background: var(--white);
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        position: fixed;
-        width: 100%;
-        top: 0;
         z-index: 1000;
-        transition: background 0.3s ease;
+        padding: 1rem 2rem;
     }
 
-    nav {
+    .nav-container {
         max-width: 1400px;
         margin: 0 auto;
-        padding: 1rem 2rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
-    .logo-container {
+    .logo-section {
         display: flex;
         align-items: center;
-        gap: 0.8rem;
+        gap: 0.75rem;
     }
 
-    .logo {
+    .logo-img {
         width: 50px;
         height: 50px;
         background: var(--primary-blue);
@@ -75,86 +97,101 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-weight: bold;
         color: white;
+        font-weight: bold;
         font-size: 1.5rem;
     }
 
-    .brand-name {
+    .logo-text {
         font-size: 1.5rem;
         font-weight: bold;
         color: var(--primary-blue);
     }
 
-    .nav-links {
+    .nav-menu {
         display: flex;
+        gap: 2rem;
         list-style: none;
         align-items: center;
-        gap: 2rem;
     }
 
-    .nav-links a {
+    .nav-link {
         text-decoration: none;
         color: var(--text-dark);
         font-weight: 500;
-        transition: color 0.3s ease;
+        transition: color 0.3s;
+        position: relative;
     }
 
-    .nav-links a:hover {
+    .nav-link:hover {
         color: var(--primary-blue);
     }
 
-    .nav-links a.active {
+    .nav-link.active {
         color: var(--primary-blue);
         border-bottom: 2px solid var(--primary-blue);
+        padding-bottom: 5px;
     }
 
     .services-dropdown {
         position: relative;
     }
 
-    .dropdown-content {
+    .dropdown-toggle {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+    }
+
+    .dropdown-menu {
         display: none;
         position: absolute;
-        background: var(--white);
-        min-width: 200px;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        top: 100%;
+        left: 0;
+        background: white;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         border-radius: 8px;
+        padding: 1rem 0;
+        min-width: 200px;
         margin-top: 0.5rem;
-        padding: 0.5rem 0;
     }
 
-    .services-dropdown:hover .dropdown-content {
+    .dropdown-menu.show {
         display: block;
     }
 
-    .dropdown-content a {
-        display: block;
-        padding: 0.8rem 1.5rem;
+    .dropdown-item {
+        padding: 0.75rem 1.5rem;
         color: var(--text-dark);
+        text-decoration: none;
+        display: block;
+        transition: background 0.3s;
     }
 
-    .dropdown-content a:hover {
-        background: var(--light-gray);
+    .dropdown-item:hover {
+        background: var(--light-bg);
+        color: var(--primary-blue);
     }
 
     .sign-up-btn {
-        background: var(--orange);
+        background: var(--primary-orange);
         color: white;
         padding: 0.6rem 1.5rem;
         border-radius: 25px;
         text-decoration: none;
         font-weight: 600;
-        transition: transform 0.3s ease;
+        transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .sign-up-btn:hover {
-        transform: scale(1.05);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 140, 66, 0.4);
     }
 
     .theme-toggle {
-        width: 50px;
-        height: 50px;
+        width: 45px;
+        height: 45px;
         border-radius: 50%;
         border: 2px solid var(--text-light);
         background: transparent;
@@ -162,169 +199,105 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.5rem;
-        transition: all 0.3s ease;
+        font-size: 1.3rem;
+        transition: all 0.3s;
     }
 
     .theme-toggle:hover {
+        border-color: var(--primary-blue);
         transform: rotate(20deg);
     }
 
-    /* Hamburger Menu */
+    /* Mobile Menu */
     .hamburger {
         display: none;
         flex-direction: column;
-        cursor: pointer;
         gap: 5px;
+        cursor: pointer;
+        padding: 5px;
     }
 
     .hamburger span {
         width: 25px;
         height: 3px;
         background: var(--primary-blue);
-        transition: all 0.3s ease;
+        border-radius: 3px;
+        transition: all 0.3s;
     }
 
-    /* Mobile Menu */
-    .mobile-menu {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: 80%;
-        height: 100vh;
-        background: var(--white);
-        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-        padding: 2rem;
-        transition: left 0.3s ease;
-        z-index: 2000;
-        overflow-y: auto;
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
     }
 
-    .mobile-menu.active {
-        left: 0;
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
     }
 
-    .mobile-menu .close-btn {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        font-size: 2rem;
-        cursor: pointer;
-        color: var(--text-dark);
-    }
-
-    .mobile-menu ul {
-        list-style: none;
-        margin-top: 3rem;
-    }
-
-    .mobile-menu ul li {
-        padding: 1rem 0;
-        border-bottom: 1px solid var(--light-gray);
-    }
-
-    .mobile-menu ul li a {
-        text-decoration: none;
-        color: var(--text-dark);
-        font-size: 1.1rem;
-        font-weight: 500;
-    }
-
-    .mobile-menu .mobile-services {
-        padding-left: 1rem;
-        display: none;
-    }
-
-    .mobile-menu .mobile-services.active {
-        display: block;
-    }
-
-    .mobile-menu .mobile-services a {
-        display: block;
-        padding: 0.5rem 0;
-        font-size: 1rem;
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
     }
 
     /* Hero Section */
-    .hero {
-        background: linear-gradient(135deg, #0033cc 0%, #1a5cff 50%, #4d94ff 100%);
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
+    .hero-section {
         margin-top: 80px;
         padding: 4rem 2rem;
+        text-align: center;
+        background: linear-gradient(135deg, #0043CE 0%, #17B8A5 100%);
+        color: white;
+        position: relative;
+        overflow: hidden;
     }
 
-    .hero::before {
+    .hero-section::before {
         content: '';
         position: absolute;
         top: -50%;
-        left: -10%;
-        width: 500px;
-        height: 500px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        animation: float 6s ease-in-out infinite;
-    }
-
-    .hero::after {
-        content: '';
-        position: absolute;
-        bottom: -30%;
-        right: -5%;
-        width: 400px;
-        height: 400px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        animation: float 8s ease-in-out infinite reverse;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+        background-size: 50px 50px;
+        animation: float 20s linear infinite;
     }
 
     @keyframes float {
-        0%, 100% { transform: translateY(0) translateX(0); }
-        50% { transform: translateY(-20px) translateX(20px); }
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(50px, 50px); }
     }
 
     .hero-content {
-        text-align: center;
-        color: white;
         max-width: 1200px;
+        margin: 0 auto;
         position: relative;
         z-index: 1;
     }
 
-    .hero-content h1 {
+    .hero-title {
         font-size: 4rem;
         font-weight: 900;
         margin-bottom: 1rem;
         letter-spacing: 2px;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
     }
 
     .hero-tagline {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         margin-bottom: 1.5rem;
         font-weight: 300;
     }
 
     .hero-description {
-        font-size: 1.2rem;
-        margin-bottom: 3rem;
-        line-height: 1.8;
+        font-size: 1.1rem;
         max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
+        margin: 0 auto 3rem;
+        opacity: 0.95;
     }
 
     .hero-buttons {
         display: flex;
-        gap: 2rem;
         justify-content: center;
+        gap: 2rem;
         flex-wrap: wrap;
-        margin-bottom: 4rem;
+        margin-bottom: 3rem;
     }
 
     .hero-btn {
@@ -335,23 +308,24 @@
         text-decoration: none;
         display: inline-flex;
         align-items: center;
-        gap: 0.8rem;
-        transition: all 0.3s ease;
+        gap: 0.5rem;
+        transition: all 0.3s;
         border: 2px solid transparent;
     }
 
     .hero-btn.primary {
         background: var(--primary-blue);
         color: white;
-        border-color: white;
+        border-color: var(--primary-blue);
     }
 
     .hero-btn.secondary {
-        background: var(--orange);
+        background: var(--primary-orange);
         color: white;
+        border-color: var(--primary-orange);
     }
 
-    .hero-btn.tertiary {
+    .hero-btn.outline {
         background: transparent;
         color: white;
         border-color: white;
@@ -359,139 +333,101 @@
 
     .hero-btn:hover {
         transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
 
     /* Product Carousel */
-    .product-carousel-section {
-        background: linear-gradient(180deg, #1a5cff 0%, #4d94ff 50%, rgba(77, 148, 255, 0.3) 100%);
+    .carousel-section {
         padding: 3rem 2rem;
-        position: relative;
+        background: rgba(23, 184, 165, 0.05);
     }
 
     .carousel-container {
         max-width: 1400px;
         margin: 0 auto;
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(10px);
-        border-radius: 30px;
-        padding: 3rem 2rem;
         position: relative;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
     }
 
     .carousel-wrapper {
-        position: relative;
         overflow: hidden;
+        border-radius: 20px;
+        background: linear-gradient(135deg, rgba(0, 67, 206, 0.1) 0%, rgba(23, 184, 165, 0.1) 100%);
+        padding: 2rem;
     }
 
     .carousel-track {
         display: flex;
         gap: 2rem;
-        transition: transform 0.5s ease;
+        transition: transform 0.5s ease-in-out;
     }
 
     .carousel-item {
         min-width: 280px;
         background: white;
-        border-radius: 20px;
-        padding: 2rem;
+        border-radius: 15px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         text-align: center;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         flex-shrink: 0;
     }
 
-    .carousel-item-image {
+    .carousel-item-img {
         width: 100%;
         height: 200px;
-        background: var(--light-gray);
-        border-radius: 15px;
+        background: var(--light-bg);
+        border-radius: 10px;
         margin-bottom: 1rem;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 3rem;
+        color: var(--primary-blue);
     }
 
-    .carousel-item h3 {
+    .carousel-item-name {
+        font-weight: 600;
         color: var(--text-dark);
-        font-size: 1.2rem;
-        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
     }
 
-    .carousel-controls {
-        position: absolute;
-        top: 50%;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        transform: translateY(-50%);
-        padding: 0 1rem;
-        pointer-events: none;
-    }
-
-    .carousel-btn {
-        width: 50px;
-        height: 50px;
-        background: white;
-        border: none;
-        border-radius: 50%;
-        font-size: 1.5rem;
-        cursor: pointer;
-        pointer-events: all;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        transition: all 0.3s ease;
-    }
-
-    .carousel-btn:hover {
-        background: var(--primary-blue);
-        color: white;
-        transform: scale(1.1);
-    }
-
-    .carousel-dots {
+    .carousel-indicators {
         display: flex;
         justify-content: center;
         gap: 0.5rem;
         margin-top: 2rem;
     }
 
-    .dot {
+    .indicator {
         width: 12px;
         height: 12px;
-        background: rgba(255, 255, 255, 0.5);
         border-radius: 50%;
+        background: #ddd;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all 0.3s;
     }
 
-    .dot.active {
-        background: white;
+    .indicator.active {
+        background: var(--primary-blue);
         width: 30px;
         border-radius: 6px;
     }
 
     /* Business Divisions */
-    .business-divisions {
-        background: linear-gradient(180deg, rgba(77, 148, 255, 0.3) 0%, var(--light-gray) 100%);
+    .business-section {
         padding: 5rem 2rem;
-    }
-
-    body.dark-mode .business-divisions {
-        background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+        background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 100%);
     }
 
     .section-title {
         text-align: center;
         font-size: 2.5rem;
-        font-weight: 900;
+        font-weight: 800;
         margin-bottom: 3rem;
-        color: var(--text-dark);
         text-transform: uppercase;
-        letter-spacing: 2px;
+        letter-spacing: 1px;
     }
 
-    .divisions-grid {
+    .business-grid {
         max-width: 1400px;
         margin: 0 auto;
         display: grid;
@@ -499,81 +435,74 @@
         gap: 2rem;
     }
 
-    .division-card {
+    .business-card {
         background: var(--white);
         border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        transition: transform 0.3s, box-shadow 0.3s;
     }
 
-    body.dark-mode .division-card {
-        background: #2b2b2b;
-    }
-
-    .division-card:hover {
+    .business-card:hover {
         transform: translateY(-10px);
         box-shadow: 0 15px 40px rgba(0,0,0,0.2);
     }
 
-    .division-image {
+    .business-card-img {
         width: 100%;
-        height: 300px;
-        background: var(--light-gray);
+        height: 250px;
+        background: linear-gradient(135deg, var(--primary-blue), var(--primary-teal));
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 4rem;
-        position: relative;
+        font-size: 5rem;
+        color: white;
     }
 
-    .division-content {
+    .business-card-content {
         padding: 2rem;
-        background: rgba(43, 43, 43, 0.9);
-        color: white;
+        text-align: center;
     }
 
-    body.dark-mode .division-content {
-        background: rgba(26, 26, 30, 0.95);
-    }
-
-    .division-content h3 {
+    .business-card-title {
         font-size: 1.8rem;
+        font-weight: 700;
         margin-bottom: 1rem;
-        font-weight: 800;
+        color: var(--text-dark);
     }
 
-    .division-content p {
-        margin-bottom: 1.5rem;
+    .business-card-desc {
+        color: var(--text-light);
+        margin-bottom: 2rem;
         line-height: 1.6;
-        color: rgba(255, 255, 255, 0.9);
     }
 
-    .division-btn {
-        background: var(--orange);
-        color: white;
-        padding: 0.8rem 2rem;
-        border-radius: 25px;
-        text-decoration: none;
+    .business-card-btn {
         display: inline-block;
+        padding: 0.9rem 2rem;
+        background: var(--primary-orange);
+        color: white;
+        border-radius: 30px;
+        text-decoration: none;
         font-weight: 600;
-        transition: all 0.3s ease;
+        transition: all 0.3s;
     }
 
-    .division-btn:hover {
-        background: #ff7020;
+    .business-card-btn:hover {
+        background: #ff7a28;
         transform: scale(1.05);
     }
 
-    /* Marketplace Section */
-    .marketplace {
-        background: linear-gradient(135deg, #20b2aa 0%, #1a5cff 100%);
+    /* Shop Now Section */
+    .shop-now-section {
         padding: 5rem 2rem;
+        background: linear-gradient(135deg, #0043CE 0%, #17B8A5 100%);
+        color: white;
         position: relative;
         overflow: hidden;
     }
 
-    .marketplace-content {
+    .shop-now-container {
         max-width: 1400px;
         margin: 0 auto;
         display: grid;
@@ -582,40 +511,35 @@
         align-items: center;
     }
 
-    .marketplace-text h2 {
+    .shop-now-content h2 {
         font-size: 3rem;
         font-weight: 900;
-        color: white;
-        margin-bottom: 1.5rem;
-    }
-
-    .marketplace-text h3 {
-        font-size: 2rem;
-        color: white;
         margin-bottom: 1rem;
     }
 
-    .marketplace-text p {
-        font-size: 1.2rem;
-        color: rgba(255, 255, 255, 0.9);
+    .shop-now-content h3 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        font-weight: 300;
+    }
+
+    .shop-now-content p {
+        font-size: 1.1rem;
         margin-bottom: 2rem;
-        line-height: 1.8;
+        opacity: 0.95;
     }
 
     .coming-soon-btn {
-        background: rgba(255, 255, 255, 0.3);
-        backdrop-filter: blur(10px);
-        color: white;
-        padding: 1rem 3rem;
+        display: inline-block;
+        padding: 1.2rem 3rem;
+        background: rgba(255,255,255,0.2);
+        border: 2px solid white;
         border-radius: 50px;
+        color: white;
         font-size: 1.3rem;
         font-weight: 700;
         text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 1rem;
-        border: 2px solid white;
-        transition: all 0.3s ease;
+        transition: all 0.3s;
     }
 
     .coming-soon-btn:hover {
@@ -624,181 +548,192 @@
         transform: scale(1.05);
     }
 
-    .marketplace-visual {
+    .shop-now-visual {
         position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .shopping-cart-image {
-        max-width: 400px;
-        width: 100%;
-        margin-right: -100px;
-        z-index: 1;
     }
 
     .phone-mockup {
-        max-width: 350px;
         width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        position: relative;
+        aspect-ratio: 9/19;
         background: #1a1a1a;
         border-radius: 40px;
-        padding: 1rem;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        position: relative;
-        z-index: 2;
+        padding: 15px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.4);
     }
 
     .phone-screen {
+        width: 100%;
+        height: 100%;
         background: white;
         border-radius: 30px;
         overflow: hidden;
         position: relative;
     }
 
-    .phone-header {
-        background: var(--primary-blue);
-        color: white;
-        padding: 1rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-weight: 600;
+    .phone-notch {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 25px;
+        background: #1a1a1a;
+        border-radius: 0 0 20px 20px;
     }
 
-    .phone-tabs {
-        display: flex;
-        background: white;
-        padding: 0.5rem;
-        gap: 0.5rem;
-        border-bottom: 1px solid #eee;
-    }
-
-    .phone-tab {
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-        font-size: 0.9rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .phone-tab.active {
-        background: var(--primary-blue);
-        color: white;
-    }
-
-    .phone-products {
-        padding: 1rem;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-        max-height: 400px;
+    .phone-content {
+        padding: 40px 15px 15px;
+        height: 100%;
         overflow-y: auto;
     }
 
-    .phone-product {
-        background: var(--light-gray);
-        border-radius: 10px;
-        padding: 0.8rem;
+    .marketplace-header {
         text-align: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
+        margin-bottom: 20px;
     }
 
-    .phone-product:hover {
-        transform: scale(1.05);
+    .marketplace-logo {
+        width: 40px;
+        height: 40px;
+        background: var(--primary-blue);
+        border-radius: 50%;
+        margin: 0 auto 10px;
     }
 
-    .phone-product-image {
+    .marketplace-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--text-dark);
+    }
+
+    .marketplace-tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 15px;
+        font-size: 0.8rem;
+    }
+
+    .tab {
+        padding: 5px 15px;
+        background: var(--primary-blue);
+        color: white;
+        border-radius: 20px;
+    }
+
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    .product-item {
+        background: var(--light-bg);
+        border-radius: 10px;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .product-img {
         width: 100%;
         height: 60px;
         background: white;
         border-radius: 8px;
-        margin-bottom: 0.5rem;
+        margin-bottom: 5px;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 1.5rem;
     }
 
-    .phone-product-name {
+    .product-name {
         font-size: 0.7rem;
         font-weight: 600;
-        margin-bottom: 0.3rem;
+        color: var(--text-dark);
     }
 
-    .phone-product-price {
-        font-size: 0.8rem;
+    .product-price {
+        font-size: 0.75rem;
         color: var(--primary-blue);
         font-weight: 700;
     }
 
+    .cart-illustration {
+        position: absolute;
+        left: -100px;
+        bottom: 50px;
+        width: 250px;
+        opacity: 0.9;
+    }
+
     /* About Section */
-    .about {
-        background: var(--light-gray);
+    .about-section {
         padding: 5rem 2rem;
+        background: var(--light-bg);
         position: relative;
         overflow: hidden;
     }
 
-    .about::before {
+    .about-section::before {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
-        width: 100%;
+        right: 0;
         height: 100%;
-        background: url('data:image/svg+xml,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="wave" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M0 50 Q 25 25, 50 50 T 100 50" fill="none" stroke="rgba(26,92,255,0.1)" stroke-width="2"/></pattern></defs><rect width="100%" height="100%" fill="url(%23wave)"/></svg>');
-        opacity: 0.3;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.3" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,122.7C1248,107,1344,85,1392,74.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat;
+        background-size: cover;
+        opacity: 0.5;
     }
 
-    .about-content {
-        max-width: 1400px;
+    .about-container {
+        max-width: 1200px;
         margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1.5fr 1fr;
-        gap: 4rem;
-        align-items: start;
         position: relative;
         z-index: 1;
     }
 
+    .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
     .about-text h2 {
         font-size: 2.5rem;
-        font-weight: 900;
+        font-weight: 800;
         margin-bottom: 2rem;
         color: var(--text-dark);
     }
 
-    .about-story, .about-mission, .about-vision {
-        margin-bottom: 2.5rem;
+    .about-subsection {
+        margin-bottom: 2rem;
     }
 
-    .about-story h3 {
-        font-size: 1.8rem;
+    .about-subsection h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .about-subsection.story h3 {
         color: var(--primary-blue);
-        margin-bottom: 1rem;
-        font-weight: 800;
     }
 
-    .about-mission h3 {
-        font-size: 1.8rem;
-        color: var(--teal);
-        margin-bottom: 1rem;
-        font-weight: 800;
+    .about-subsection.mission h3 {
+        color: var(--primary-teal);
     }
 
-    .about-vision h3 {
-        font-size: 1.8rem;
-        color: var(--orange);
-        margin-bottom: 1rem;
-        font-weight: 800;
+    .about-subsection.vision h3 {
+        color: var(--primary-orange);
     }
 
-    .about-text p {
-        font-size: 1.1rem;
-        line-height: 1.8;
+    .about-subsection p {
         color: var(--text-light);
+        line-height: 1.8;
     }
 
     .founder-card {
@@ -807,140 +742,80 @@
         padding: 2rem;
         text-align: center;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        position: sticky;
-        top: 100px;
     }
 
-    body.dark-mode .founder-card {
-        background: #2b2b2b;
-    }
-
-    .founder-image {
+    .founder-img {
         width: 200px;
         height: 200px;
         border-radius: 50%;
-        background: var(--light-gray);
+        background: linear-gradient(135deg, var(--primary-blue), var(--primary-teal));
         margin: 0 auto 1.5rem;
-        border: 5px solid var(--primary-blue);
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 4rem;
+        color: white;
+        border: 5px solid var(--light-bg);
     }
 
-    .founder-card h3 {
-        font-size: 2rem;
+    .founder-name {
+        font-size: 1.8rem;
+        font-weight: 700;
         color: var(--primary-blue);
         margin-bottom: 0.5rem;
-        font-weight: 800;
     }
 
     .founder-title {
-        color: var(--teal);
-        font-size: 1.2rem;
+        color: var(--primary-teal);
         font-weight: 600;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
     }
 
     .founder-bio {
-        font-size: 1rem;
-        line-height: 1.6;
         color: var(--text-light);
+        line-height: 1.7;
     }
 
     /* FAQ Section */
-    .faq {
-        background: var(--white);
+    .faq-section {
         padding: 5rem 2rem;
+        background: white;
     }
 
     .faq-container {
-        max-width: 1200px;
+        max-width: 900px;
         margin: 0 auto;
         text-align: center;
     }
 
-    .faq-container h2 {
-        font-size: 2.5rem;
-        font-weight: 900;
-        color: var(--orange);
+    .faq-title {
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--primary-orange);
         margin-bottom: 1rem;
     }
 
     .faq-subtitle {
-        font-size: 1.1rem;
         color: var(--text-light);
         margin-bottom: 3rem;
     }
 
-    .faq-btn {
+    .view-faq-btn {
+        display: inline-block;
+        padding: 1rem 3rem;
         background: var(--primary-blue);
         color: white;
-        padding: 1rem 3rem;
-        border-radius: 50px;
-        border: none;
-        font-size: 1.1rem;
+        border-radius: 30px;
+        text-decoration: none;
         font-weight: 600;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.8rem;
         margin-bottom: 3rem;
-        transition: all 0.3s ease;
+        transition: all 0.3s;
     }
 
-    .faq-btn:hover {
-        background: var(--secondary-blue);
-        transform: scale(1.05);
-    }
-
-    .faq-items {
-        display: none;
-        text-align: left;
-        margin-bottom: 3rem;
-    }
-
-    .faq-items.active {
-        display: block;
-    }
-
-    .faq-item {
-        background: var(--light-gray);
-        border-radius: 10px;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    body.dark-mode .faq-item {
-        background: #2b2b2b;
-    }
-
-    .faq-item:hover {
-        background: rgba(26, 92, 255, 0.1);
-    }
-
-    .faq-question {
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: var(--text-dark);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .faq-answer {
-        display: none;
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px solid rgba(0,0,0,0.1);
-        color: var(--text-light);
-        line-height: 1.6;
-    }
-
-    .faq-answer.active {
-        display: block;
+    .view-faq-btn:hover {
+        background: #003399;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,67,206,0.3);
     }
 
     .legal-links {
@@ -951,75 +826,61 @@
     }
 
     .legal-link {
-        background: white;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
         padding: 1rem 2rem;
+        background: var(--light-bg);
         border-radius: 10px;
         text-decoration: none;
         color: var(--text-dark);
         font-weight: 600;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
-    }
-
-    body.dark-mode .legal-link {
-        background: #2b2b2b;
+        transition: all 0.3s;
     }
 
     .legal-link:hover {
+        background: var(--primary-blue);
+        color: white;
         transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
 
     /* Contact Section */
-    .contact {
-        background: var(--light-gray);
+    .contact-section {
         padding: 5rem 2rem;
+        background: var(--light-bg);
     }
 
     .contact-container {
-        max-width: 1400px;
+        max-width: 1200px;
         margin: 0 auto;
     }
 
-    .contact-container h2 {
+    .contact-title {
         text-align: center;
         font-size: 2.5rem;
-        font-weight: 900;
+        font-weight: 800;
         margin-bottom: 3rem;
-        color: var(--text-dark);
     }
 
-    .newsletter {
-        background: white;
-        border-radius: 20px;
-        padding: 3rem;
+    .newsletter-section {
         text-align: center;
-        margin-bottom: 3rem;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        margin-bottom: 4rem;
     }
 
-    body.dark-mode .newsletter {
-        background: #2b2b2b;
-    }
-
-    .newsletter h3 {
+    .newsletter-section h3 {
         font-size: 1.8rem;
         color: var(--primary-blue);
         margin-bottom: 1rem;
-        font-weight: 800;
     }
 
-    .newsletter p {
+    .newsletter-section p {
         color: var(--text-light);
         margin-bottom: 2rem;
-        font-size: 1.1rem;
     }
 
     .newsletter-form {
         display: flex;
+        justify-content: center;
         gap: 1rem;
         max-width: 600px;
         margin: 0 auto;
@@ -1028,219 +889,215 @@
     .newsletter-input {
         flex: 1;
         padding: 1rem 1.5rem;
-        border: 2px solid var(--light-gray);
-        border-radius: 50px;
+        border: 2px solid #ddd;
+        border-radius: 30px;
         font-size: 1rem;
         outline: none;
-        transition: border-color 0.3s ease;
+        transition: border-color 0.3s;
     }
 
     .newsletter-input:focus {
-        border-color: var(--primary-blue);
+        border-color: var(--primary-teal);
     }
 
     .newsletter-btn {
-        background: var(--teal);
-        color: white;
         padding: 1rem 2.5rem;
+        background: var(--primary-teal);
+        color: white;
         border: none;
-        border-radius: 50px;
-        font-size: 1rem;
+        border-radius: 30px;
         font-weight: 600;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all 0.3s;
     }
 
     .newsletter-btn:hover {
-        background: #1a9d96;
+        background: #14a593;
         transform: scale(1.05);
     }
 
-    .contact-grid {
+    .contact-info-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 2rem;
+        margin-bottom: 3rem;
     }
 
-    .contact-card {
+    .contact-info-card {
         background: white;
-        border-radius: 15px;
         padding: 2rem;
+        border-radius: 15px;
         text-align: center;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
     }
 
-    body.dark-mode .contact-card {
-        background: #2b2b2b;
-    }
-
-    .contact-card:hover {
+    .contact-info-card:hover {
         transform: translateY(-5px);
     }
 
     .contact-icon {
-        width: 70px;
-        height: 70px;
+        width: 60px;
+        height: 60px;
         background: var(--primary-blue);
         border-radius: 50%;
+        margin: 0 auto 1rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto 1rem;
-        font-size: 2rem;
+        font-size: 1.5rem;
         color: white;
     }
 
-    .contact-card h3 {
-        font-size: 1.3rem;
-        color: var(--primary-blue);
-        margin-bottom: 1rem;
+    .contact-info-title {
+        font-size: 1.2rem;
         font-weight: 700;
+        color: var(--primary-blue);
+        margin-bottom: 0.5rem;
     }
 
-    .contact-card p {
+    .contact-info-text {
         color: var(--text-light);
-        line-height: 1.6;
     }
 
-    .contact-card a {
+    .contact-info-text a {
         color: var(--text-dark);
         text-decoration: none;
     }
 
-    .contact-card a:hover {
+    .contact-info-text a:hover {
         color: var(--primary-blue);
     }
 
-    /* Footer */
-    footer {
-        background: var(--dark-gray);
-        color: white;
-        padding: 3rem 2rem 1rem;
-    }
-
-    body.dark-mode footer {
-        background: #0a0a0a;
-    }
-
-    .footer-content {
-        max-width: 1400px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        margin-bottom: 2rem;
-    }
-
-    .footer-section h3 {
-        font-size: 1.3rem;
-        margin-bottom: 1rem;
-        color: var(--orange);
-    }
-
-    .footer-section p, .footer-section a {
-        color: rgba(255, 255, 255, 0.8);
-        line-height: 1.8;
-        text-decoration: none;
-        display: block;
-        margin-bottom: 0.5rem;
-    }
-
-    .footer-section a:hover {
-        color: white;
+    .social-section {
+        text-align: center;
     }
 
     .social-icons {
         display: flex;
-        gap: 1rem;
-        margin-top: 1rem;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 2rem;
     }
 
     .social-icon {
-        width: 40px;
-        height: 40px;
-        background: rgba(255, 255, 255, 0.1);
+        width: 50px;
+        height: 50px;
+        background: var(--primary-blue);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         color: white;
         text-decoration: none;
-        font-size: 1.2rem;
-        transition: all 0.3s ease;
+        font-size: 1.3rem;
+        transition: all 0.3s;
     }
 
     .social-icon:hover {
-        background: var(--primary-blue);
-        transform: scale(1.1);
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,67,206,0.3);
+    }
+
+    .social-icon.facebook { background: #1877f2; }
+    .social-icon.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .social-icon.twitter { background: #1da1f2; }
+    .social-icon.tiktok { background: #000000; }
+    .social-icon.whatsapp { background: #25d366; }
+
+    /* Footer */
+    .footer {
+        background: #1a1a1a;
+        color: white;
+        padding: 3rem 2rem 1rem;
+    }
+
+    .footer-container {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        margin-bottom: 2rem;
+    }
+
+    .footer-column h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        color: var(--primary-teal);
+    }
+
+    .footer-column p,
+    .footer-column a {
+        color: #aaa;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+    }
+
+    .footer-column a:hover {
+        color: var(--primary-teal);
     }
 
     .footer-bottom {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 1px solid #333;
         padding-top: 2rem;
         text-align: center;
-        color: rgba(255, 255, 255, 0.6);
     }
 
-    .footer-bottom p {
-        margin-bottom: 0.5rem;
+    .footer-credits {
+        color: #888;
+        margin-bottom: 1rem;
     }
 
-    .footer-bottom a {
-        color: var(--orange);
+    .footer-credits a {
+        color: var(--primary-teal);
         text-decoration: none;
     }
 
-    .footer-bottom a:hover {
-        color: white;
+    .footer-credits a:hover {
+        text-decoration: underline;
     }
 
     /* Cookie Popup */
     .cookie-popup {
         position: fixed;
-        bottom: 2rem;
-        left: 50%;
-        transform: translateX(-50%);
+        bottom: 0;
+        left: 0;
+        right: 0;
         background: white;
-        border-radius: 15px;
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
         padding: 2rem;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        max-width: 500px;
-        z-index: 3000;
-        display: none;
+        z-index: 2000;
+        transform: translateY(100%);
+        transition: transform 0.3s;
     }
 
-    body.dark-mode .cookie-popup {
-        background: #2b2b2b;
+    .cookie-popup.show {
+        transform: translateY(0);
     }
 
-    .cookie-popup.active {
-        display: block;
-        animation: slideUp 0.5s ease;
+    .cookie-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
     }
 
-    @keyframes slideUp {
-        from {
-            transform: translateX(-50%) translateY(100px);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
+    .cookie-text {
+        flex: 1;
+        min-width: 250px;
     }
 
-    .cookie-popup h3 {
-        font-size: 1.3rem;
-        margin-bottom: 1rem;
-        color: var(--text-dark);
-    }
-
-    .cookie-popup p {
-        color: var(--text-light);
-        margin-bottom: 1.5rem;
-        line-height: 1.6;
+    .cookie-text h3 {
+        margin-bottom: 0.5rem;
     }
 
     .cookie-buttons {
@@ -1249,13 +1106,12 @@
     }
 
     .cookie-btn {
-        flex: 1;
-        padding: 0.8rem;
+        padding: 0.8rem 2rem;
         border: none;
-        border-radius: 8px;
+        border-radius: 25px;
         font-weight: 600;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all 0.3s;
     }
 
     .cookie-btn.accept {
@@ -1264,7 +1120,7 @@
     }
 
     .cookie-btn.reject {
-        background: var(--light-gray);
+        background: var(--light-bg);
         color: var(--text-dark);
     }
 
@@ -1273,90 +1129,96 @@
     }
 
     /* Responsive Design */
-    @media (max-width: 768px) {
+    @media (max-width: 968px) {
+        .nav-menu {
+            position: fixed;
+            top: 80px;
+            left: -100%;
+            width: 100%;
+            background: white;
+            flex-direction: column;
+            padding: 2rem;
+            gap: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: left 0.3s;
+        }
+
+        .nav-menu.active {
+            left: 0;
+        }
+
         .hamburger {
             display: flex;
         }
 
-        .nav-links {
-            display: none;
-        }
-
-        .mobile-menu {
-            display: block;
-        }
-
-        .hero-content h1 {
+        .hero-title {
             font-size: 2.5rem;
         }
 
         .hero-tagline {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
 
-        .hero-description {
-            font-size: 1rem;
-        }
-
-        .hero-buttons {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .divisions-grid {
+        .business-grid {
             grid-template-columns: 1fr;
         }
 
-        .marketplace-content {
+        .shop-now-container {
             grid-template-columns: 1fr;
-        }
-
-        .shopping-cart-image {
-            display: none;
         }
 
         .about-content {
             grid-template-columns: 1fr;
         }
 
+        .phone-mockup {
+            max-width: 300px;
+        }
+
         .newsletter-form {
             flex-direction: column;
         }
+    }
 
-        .contact-grid {
-            grid-template-columns: 1fr;
+    @media (max-width: 480px) {
+        .hero-title {
+            font-size: 2rem;
         }
 
-        .footer-content {
-            grid-template-columns: 1fr;
+        .section-title {
+            font-size: 1.8rem;
         }
 
         .carousel-item {
-            min-width: 200px;
+            min-width: 220px;
         }
     }
 </style>
 ```
 
 </head>
-<body>
+<body class="light-mode">
     <!-- Cookie Popup -->
     <div class="cookie-popup" id="cookiePopup">
-        <h3>🍪 Cookie Notice</h3>
-        <p>We use cookies to enhance your browsing experience and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.</p>
-        <div class="cookie-buttons">
-            <button class="cookie-btn accept" onclick="acceptCookies()">Accept All</button>
-            <button class="cookie-btn reject" onclick="rejectCookies()">Reject Non-Essential</button>
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <h3>We Value Your Privacy</h3>
+                <p>We use cookies to enhance your browsing experience and provide personalized content. By clicking "Accept All", you consent to our use of cookies.</p>
+            </div>
+            <div class="cookie-buttons">
+                <button class="cookie-btn accept" onclick="acceptCookies()">Accept All</button>
+                <button class="cookie-btn reject" onclick="rejectCookies()">Reject Non-Essential</button>
+            </div>
         </div>
     </div>
 
 ```
 <!-- Header -->
-<header>
-    <nav>
-        <div class="logo-container">
-            <div class="logo">VL</div>
-            <span class="brand-name">vinceslink</span>
+<header class="header">
+    <nav class="nav-container">
+        <div class="logo-section">
+            <div class="logo-img">VL</div>
+            <span class="logo-text">vinceslink</span>
         </div>
 
         <div class="hamburger" onclick="toggleMobileMenu()">
@@ -1365,220 +1227,179 @@
             <span></span>
         </div>
 
-        <ul class="nav-links">
-            <li><a href="#home" class="active">Home</a></li>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#home" class="nav-link active">Home</a></li>
             <li class="services-dropdown">
-                <a href="#services">Services ▼</a>
-                <div class="dropdown-content">
-                    <a href="gadget-hub.html">Gadget Hub</a>
-                    <a href="super-store.html">Super Store</a>
-                    <a href="real-estate.html">Real Estate</a>
+                <a class="nav-link dropdown-toggle" onclick="toggleDropdown(event)">
+                    Services <span>▼</span>
+                </a>
+                <div class="dropdown-menu" id="servicesDropdown">
+                    <a href="gadget-hub.html" class="dropdown-item">Gadget Hub</a>
+                    <a href="super-store.html" class="dropdown-item">Super Store</a>
+                    <a href="real-estate.html" class="dropdown-item">Real Estate</a>
                 </div>
             </li>
-            <li><a href="#shop-now">Shop Now</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#shop-now" class="nav-link">Shop Now</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#faq" class="nav-link">FAQ</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
             <li><a href="#signup" class="sign-up-btn">Sign Up</a></li>
-            <li><button class="theme-toggle" onclick="toggleTheme()">🌙</button></li>
+            <li>
+                <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">☀️</button>
+            </li>
         </ul>
     </nav>
 </header>
 
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-    <span class="close-btn" onclick="toggleMobileMenu()">×</span>
-    <ul>
-        <li><a href="#home" onclick="toggleMobileMenu()">Home</a></li>
-        <li>
-            <a href="#services" onclick="toggleServices()">Services ▼</a>
-            <div class="mobile-services" id="mobileServices">
-                <a href="gadget-hub.html">Gadget Hub</a>
-                <a href="super-store.html">Super Store</a>
-                <a href="real-estate.html">Real Estate</a>
-            </div>
-        </li>
-        <li><a href="#shop-now" onclick="toggleMobileMenu()">Shop Now</a></li>
-        <li><a href="#about" onclick="toggleMobileMenu()">About</a></li>
-        <li><a href="#faq" onclick="toggleMobileMenu()">FAQ</a></li>
-        <li><a href="#contact" onclick="toggleMobileMenu()">Contact</a></li>
-        <li><a href="#signup" onclick="toggleMobileMenu()">Sign Up</a></li>
-        <li><button class="theme-toggle" onclick="toggleTheme()">🌙</button></li>
-    </ul>
-</div>
-
 <!-- Hero Section -->
-<section class="hero" id="home">
+<section class="hero-section" id="home">
     <div class="hero-content">
-        <h1>VINCESLINK</h1>
+        <h1 class="hero-title">VINCESLINK</h1>
         <p class="hero-tagline">Everyday Essentials • Gadgets • Realty</p>
         <p class="hero-description">
             Everyday essentials, smart gadgets, and trusted real estate solutions—all in one place with Vinceslink.
         </p>
         <div class="hero-buttons">
             <a href="gadget-hub.html" class="hero-btn primary">
-                <span>⚡</span> Explore Gadgets
+                ⚡ Explore Gadgets
             </a>
             <a href="super-store.html" class="hero-btn secondary">
-                <span>🛒</span> Shop Essentials
+                🛒 Shop Essentials
             </a>
-            <a href="real-estate.html" class="hero-btn tertiary">
-                <span>🏠</span> View Properties
+            <a href="real-estate.html" class="hero-btn outline">
+                🏠 View Properties
             </a>
         </div>
     </div>
 </section>
 
 <!-- Product Carousel -->
-<section class="product-carousel-section">
+<section class="carousel-section">
     <div class="carousel-container">
         <div class="carousel-wrapper">
             <div class="carousel-track" id="carouselTrack">
-                <!-- Product 1: Charger -->
                 <div class="carousel-item">
-                    <div class="carousel-item-image">🔌</div>
-                    <h3>PF-014 Charger</h3>
+                    <div class="carousel-item-img">🔌</div>
+                    <h4 class="carousel-item-name">PF-014 Charger</h4>
                 </div>
-                <!-- Product 2: Headset -->
                 <div class="carousel-item">
-                    <div class="carousel-item-image">🎧</div>
-                    <h3>P-31 Headset</h3>
+                    <div class="carousel-item-img">🎧</div>
+                    <h4 class="carousel-item-name">P-31 Headset</h4>
                 </div>
-                <!-- Product 3: Ice Cream -->
                 <div class="carousel-item">
-                    <div class="carousel-item-image">🍦</div>
-                    <h3>Fan Ice</h3>
+                    <div class="carousel-item-img">🍦</div>
+                    <h4 class="carousel-item-name">FanIce</h4>
                 </div>
-                <!-- Product 4: Cosmetics -->
                 <div class="carousel-item">
-                    <div class="carousel-item-image">💄</div>
-                    <h3>Cosmetics</h3>
+                    <div class="carousel-item-img">💄</div>
+                    <h4 class="carousel-item-name">Cosmetics</h4>
                 </div>
-                <!-- Product 5: Land -->
                 <div class="carousel-item">
-                    <div class="carousel-item-image">🏞️</div>
-                    <h3>Land</h3>
+                    <div class="carousel-item-img">🏞️</div>
+                    <h4 class="carousel-item-name">Land</h4>
                 </div>
-                <!-- Product 6: House -->
                 <div class="carousel-item">
-                    <div class="carousel-item-image">🏡</div>
-                    <h3>House</h3>
+                    <div class="carousel-item-img">🏠</div>
+                    <h4 class="carousel-item-name">House</h4>
                 </div>
-            </div>
-            <div class="carousel-controls">
-                <button class="carousel-btn" onclick="moveCarousel(-1)">‹</button>
-                <button class="carousel-btn" onclick="moveCarousel(1)">›</button>
             </div>
         </div>
-        <div class="carousel-dots" id="carouselDots"></div>
+        <div class="carousel-indicators">
+            <span class="indicator active"></span>
+            <span class="indicator"></span>
+            <span class="indicator"></span>
+            <span class="indicator"></span>
+            <span class="indicator"></span>
+        </div>
     </div>
 </section>
 
 <!-- Business Divisions -->
-<section class="business-divisions" id="services">
-    <h2 class="section-title">OUR BUSINESS DIVISIONS</h2>
-    <div class="divisions-grid">
-        <!-- Gadget Hub -->
-        <div class="division-card">
-            <div class="division-image">📱</div>
-            <div class="division-content">
-                <h3>Vinceslink<br>Gadget Hub</h3>
-                <p>Your one-stop destination for smart gadgets and cutting-edge electronics.</p>
-                <a href="gadget-hub.html" class="division-btn">View Products</a>
+<section class="business-section">
+    <h2 class="section-title">Our Business Divisions</h2>
+    <div class="business-grid">
+        <div class="business-card">
+            <div class="business-card-img">📱</div>
+            <div class="business-card-content">
+                <h3 class="business-card-title">Vinceslink Gadget Hub</h3>
+                <p class="business-card-desc">Your one-stop destination for smart gadgets and cutting-edge electronics.</p>
+                <a href="gadget-hub.html" class="business-card-btn">View Products</a>
             </div>
         </div>
-
-        <!-- Super Store -->
-        <div class="division-card">
-            <div class="division-image">🛒</div>
-            <div class="division-content">
-                <h3>Vinceslink<br>Super Store</h3>
-                <p>Daily essentials and premium groceries delivered to your doorstep.</p>
-                <a href="super-store.html" class="division-btn">Shop Essentials</a>
+        <div class="business-card">
+            <div class="business-card-img">🛒</div>
+            <div class="business-card-content">
+                <h3 class="business-card-title">Vinceslink Super Store</h3>
+                <p class="business-card-desc">Daily essentials and premium groceries delivered to your doorstep.</p>
+                <a href="super-store.html" class="business-card-btn">Shop Essentials</a>
             </div>
         </div>
-
-        <!-- Realty -->
-        <div class="division-card">
-            <div class="division-image">🏠</div>
-            <div class="division-content">
-                <h3>Vinceslink<br>Realty</h3>
-                <p>Trusted real estate solutions for buying, selling, and investing.</p>
-                <a href="real-estate.html" class="division-btn">Book Consultation</a>
+        <div class="business-card">
+            <div class="business-card-img">🏘️</div>
+            <div class="business-card-content">
+                <h3 class="business-card-title">Vinceslink Realty</h3>
+                <p class="business-card-desc">Trusted real estate solutions for buying, selling, and investing.</p>
+                <a href="real-estate.html" class="business-card-btn">Book Consultation</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Marketplace -->
-<section class="marketplace" id="shop-now">
-    <div class="marketplace-content">
-        <div class="marketplace-text">
+<!-- Shop Now / Marketplace -->
+<section class="shop-now-section" id="shop-now">
+    <div class="shop-now-container">
+        <div class="shop-now-content">
             <h2>MARKETPLACE</h2>
             <h3>Ready to shop?</h3>
             <p>Experience seamless shopping with our upcoming e-commerce platform</p>
-            <a href="#" class="coming-soon-btn">
-                🛍️ COMING SOON 🤑
-            </a>
+            <a href="#signup" class="coming-soon-btn">🛍️ COMING SOON 😊</a>
         </div>
-        <div class="marketplace-visual">
-            <img src="placeholder-cart.png" alt="Shopping Cart" class="shopping-cart-image" style="display:none;">
+        <div class="shop-now-visual">
             <div class="phone-mockup">
                 <div class="phone-screen">
-                    <div class="phone-header">
-                        <div class="logo" style="width: 30px; height: 30px; font-size: 1rem;">VL</div>
-                        <span>VINCESLINK</span>
-                    </div>
-                    <div class="phone-tabs">
-                        <div class="phone-tab active">Marketplace</div>
-                        <div class="phone-tab">History</div>
-                        <div class="phone-tab">Cart</div>
-                    </div>
-                    <div class="phone-products">
-                        <div class="phone-product">
-                            <div class="phone-product-image">📷</div>
-                            <div class="phone-product-name">Wireless Cam</div>
-                            <div class="phone-product-price">$39</div>
+                    <div class="phone-notch"></div>
+                    <div class="phone-content">
+                        <div class="marketplace-header">
+                            <div class="marketplace-logo"></div>
+                            <div class="marketplace-title">VINCESLINK</div>
+                            <div class="marketplace-tabs">
+                                <span class="tab">Marketplace</span>
+                                <span>History</span>
+                                <span>Cart</span>
+                                <span>Profile</span>
+                            </div>
                         </div>
-                        <div class="phone-product">
-                            <div class="phone-product-image">🎧</div>
-                            <div class="phone-product-name">Wireless Ear</div>
-                            <div class="phone-product-price">$99</div>
-                        </div>
-                        <div class="phone-product">
-                            <div class="phone-product-image">🍎</div>
-                            <div class="phone-product-name">Apple</div>
-                            <div class="phone-product-price">$1.29</div>
-                        </div>
-                        <div class="phone-product">
-                            <div class="phone-product-image">🔋</div>
-                            <div class="phone-product-name">Wireless Ch</div>
-                            <div class="phone-product-price">$39</div>
-                        </div>
-                        <div class="phone-product">
-                            <div class="phone-product-image">🔌</div>
-                            <div class="phone-product-name">USB-C</div>
-                            <div class="phone-product-price">$19</div>
-                        </div>
-                        <div class="phone-product">
-                            <div class="phone-product-image">💄</div>
-                            <div class="phone-product-name">Cream Jar</div>
-                            <div class="phone-product-price">$24</div>
-                        </div>
-                        <div class="phone-product">
-                            <div class="phone-product-image">⚡</div>
-                            <div class="phone-product-name">Fast Charger</div>
-                            <div class="phone-product-price">$29</div>
-                        </div>
-                        <div class="phone-product">
-                            <div class="phone-product-image">🎮</div>
-                            <div class="phone-product-name">Controller</div>
-                            <div class="phone-product-price">$59</div>
-                        </div>
-                        <div class="phone-product">
-                            <div class="phone-product-image">💡</div>
-                            <div class="phone-product-name">Smart Bulb</div>
-                            <div class="phone-product-price">$15</div>
+                        <div class="product-grid">
+                            <div class="product-item">
+                                <div class="product-img">📷</div>
+                                <div class="product-name">Wireless Ca...</div>
+                                <div class="product-price">$39</div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-img">🎧</div>
+                                <div class="product-name">Wireless E...</div>
+                                <div class="product-price">$99</div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-img">🍎</div>
+                                <div class="product-name">Apple</div>
+                                <div class="product-price">$1.29</div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-img">🔋</div>
+                                <div class="product-name">Wireless C...</div>
+                                <div class="product-price">$39</div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-img">🔌</div>
+                                <div class="product-name">USB-C</div>
+                                <div class="product-price">$19</div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-img">🥫</div>
+                                <div class="product-name">Cream Jar</div>
+                                <div class="product-price">$24</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1588,111 +1409,45 @@
 </section>
 
 <!-- About Section -->
-<section class="about" id="about">
-    <div class="about-content">
-        <div class="about-text">
-            <h2>ABOUT VINCESLINK</h2>
-            
-            <div class="about-story">
-                <h3>Our Story</h3>
-                <p>
-                    Vinceslink was founded with a vision to simplify modern living by bringing together three essential aspects of daily life: technology, everyday essentials, and property solutions. What started as a passion for providing quality gadgets has evolved into a multi-industry brand committed to excellence and customer satisfaction.
-                </p>
+<section class="about-section" id="about">
+    <div class="about-container">
+        <h2 class="section-title">About Vinceslink</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <div class="about-subsection story">
+                    <h3>Our Story</h3>
+                    <p>Vinceslink was founded with a vision to simplify modern living by bringing together three essential aspects of daily life: technology, everyday essentials, and property solutions. What started as a passion for providing quality gadgets has evolved into a multi-industry brand committed to excellence and customer satisfaction.</p>
+                </div>
+                <div class="about-subsection mission">
+                    <h3>Our Mission</h3>
+                    <p>To deliver exceptional value through quality products and reliable services while maintaining transparency, trust, and convenience in every customer interaction. We strive to be the go-to platform where technology meets lifestyle and opportunity meets reality.</p>
+                </div>
+                <div class="about-subsection vision">
+                    <h3>Our Vision</h3>
+                    <p>To become Nigeria's leading multi-industry ecosystem, where customers can access authentic gadgets, essential household items, and trusted real estate solutions—all with the assurance of quality and integrity.</p>
+                </div>
             </div>
-
-            <div class="about-mission">
-                <h3>Our Mission</h3>
-                <p>
-                    To deliver exceptional value through quality products and reliable services while maintaining transparency, trust, and convenience in every customer interaction. We strive to be the go-to platform where technology meets lifestyle and opportunity meets reality.
-                </p>
+            <div class="founder-card">
+                <div class="founder-img">VN</div>
+                <h3 class="founder-name">Vincent</h3>
+                <p class="founder-title">Founder & CEO</p>
+                <p class="founder-bio">Driven by a passion for innovation and service excellence, Vincent established Vinceslink to bridge the gap between quality products and accessible services in Nigeria's growing market. His vision continues to guide our commitment to customer satisfaction and business integrity.</p>
             </div>
-
-            <div class="about-vision">
-                <h3>Our Vision</h3>
-                <p>
-                    To become Nigeria's leading multi-industry ecosystem, where customers can access authentic gadgets, essential household items, and trusted real estate solutions—all in one place. We envision a future where Vinceslink is synonymous with quality, reliability, and innovation.
-                </p>
-            </div>
-        </div>
-
-        <div class="founder-card">
-            <div class="founder-image">👤</div>
-            <h3>Vincent</h3>
-            <p class="founder-title">Founder & CEO</p>
-            <p class="founder-bio">
-                Driven by a passion for innovation and service excellence, Vincent established Vinceslink to bridge the gap between quality products and accessible services in Nigeria's growing market. His vision continues to guide our commitment to customer satisfaction and business integrity.
-            </p>
         </div>
     </div>
 </section>
 
 <!-- FAQ Section -->
-<section class="faq" id="faq">
+<section class="faq-section" id="faq">
     <div class="faq-container">
-        <h2>FAQ</h2>
+        <h2 class="faq-title">FAQ</h2>
         <p class="faq-subtitle">Have questions? We've got answers! Click below to view all frequently asked questions.</p>
-        
-        <button class="faq-btn" onclick="toggleFAQ()">
-            <span>▼</span> View All FAQs
-        </button>
-
-        <div class="faq-items" id="faqItems">
-            <div class="faq-item" onclick="toggleAnswer(this)">
-                <div class="faq-question">
-                    How do I place an order?
-                    <span>+</span>
-                </div>
-                <div class="faq-answer">
-                    Once our e-commerce platform launches, you'll be able to browse products, add them to your cart, and complete your purchase securely. You can also contact us directly via WhatsApp or phone for immediate assistance.
-                </div>
-            </div>
-
-            <div class="faq-item" onclick="toggleAnswer(this)">
-                <div class="faq-question">
-                    What are your delivery areas?
-                    <span>+</span>
-                </div>
-                <div class="faq-answer">
-                    We currently serve Ogun State and surrounding areas. For gadgets and super store products, we offer pickup and delivery options. Contact us for specific delivery information to your location.
-                </div>
-            </div>
-
-            <div class="faq-item" onclick="toggleAnswer(this)">
-                <div class="faq-question">
-                    How does the property consultation process work?
-                    <span>+</span>
-                </div>
-                <div class="faq-answer">
-                    Simply fill out our consultation form with your requirements, and our real estate team will contact you within 24 hours to discuss available properties, schedule viewings, and guide you through the entire process.
-                </div>
-            </div>
-
-            <div class="faq-item" onclick="toggleAnswer(this)">
-                <div class="faq-question">
-                    What is your refund policy?
-                    <span>+</span>
-                </div>
-                <div class="faq-answer">
-                    We offer refunds for defective products within 7 days of purchase with proof of purchase. Items must be in original condition with packaging. Contact our support team to initiate a refund request.
-                </div>
-            </div>
-
-            <div class="faq-item" onclick="toggleAnswer(this)">
-                <div class="faq-question">
-                    What are your support hours?
-                    <span>+</span>
-                </div>
-                <div class="faq-answer">
-                    Our customer support is available Monday to Saturday, 9:00 AM - 6:00 PM. You can reach us via phone, email, or WhatsApp. We respond to all inquiries within 24 hours.
-                </div>
-            </div>
-        </div>
-
+        <a href="#" class="view-faq-btn">View All FAQs</a>
         <div class="legal-links">
-            <a href="terms.html" class="legal-link">
+            <a href="#" class="legal-link">
                 📄 Terms & Conditions
             </a>
-            <a href="privacy.html" class="legal-link">
+            <a href="#" class="legal-link">
                 🔒 Privacy Policy
             </a>
             <a href="#contact" class="legal-link">
@@ -1703,11 +1458,11 @@
 </section>
 
 <!-- Contact Section -->
-<section class="contact" id="contact">
+<section class="contact-section" id="contact">
     <div class="contact-container">
-        <h2>GET IN TOUCH</h2>
-
-        <div class="newsletter">
+        <h2 class="contact-title">Get In Touch</h2>
+        
+        <div class="newsletter-section">
             <h3>Stay Updated</h3>
             <p>Subscribe to our newsletter for exclusive deals, new arrivals, and property listings</p>
             <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
@@ -1716,191 +1471,202 @@
             </form>
         </div>
 
-        <div class="contact-grid">
-            <div class="contact-card">
+        <div class="contact-info-grid">
+            <div class="contact-info-card">
                 <div class="contact-icon">📞</div>
-                <h3>Call Us</h3>
-                <p><a href="tel:+2349078683552">+234 907 868 3552</a></p>
+                <h4 class="contact-info-title">Call Us</h4>
+                <p class="contact-info-text">
+                    <a href="tel:+2349078683552">+234 907 868 3552</a>
+                </p>
             </div>
-
-            <div class="contact-card">
+            <div class="contact-info-card">
                 <div class="contact-icon">✉️</div>
-                <h3>Email Us</h3>
-                <p><a href="mailto:vinceslink@gmail.com">vinceslink@gmail.com</a></p>
+                <h4 class="contact-info-title">Email Us</h4>
+                <p class="contact-info-text">
+                    <a href="mailto:vinceslink@gmail.com">vinceslink@gmail.com</a>
+                </p>
             </div>
-
-            <div class="contact-card">
+            <div class="contact-info-card">
                 <div class="contact-icon">📍</div>
-                <h3>Gadgets Hub</h3>
-                <p>No. 12 Ijoko Rd, Opposite African Church, Sango Ota, Ogun State</p>
+                <h4 class="contact-info-title">Gadgets Hub</h4>
+                <p class="contact-info-text">
+                    No. 12 Ijoko Rd, Opposite African Church, Sango Ota, Ogun State
+                </p>
             </div>
-
-            <div class="contact-card">
+            <div class="contact-info-card">
                 <div class="contact-icon">🏠</div>
-                <h3>Super Store / Head Office</h3>
-                <p>No. 91 Ishaka Road, Ijako, Ogun State</p>
+                <h4 class="contact-info-title">Super Store / Head Office</h4>
+                <p class="contact-info-text">
+                    No. 91 Ishaka Road, Ijako, Ogun State
+                </p>
+            </div>
+        </div>
+
+        <div class="social-section">
+            <h3>Follow Us</h3>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/share/17XjXSBeR1/?mibextid=wwXIfr" class="social-icon facebook" target="_blank">f</a>
+                <a href="https://www.instagram.com/vinceslink_1" class="social-icon instagram" target="_blank">📷</a>
+                <a href="#" class="social-icon twitter" target="_blank">🐦</a>
+                <a href="https://www.tiktok.com/@vinceslink1?_r=1&_t=ZS-93wGhXnvipZ" class="social-icon tiktok" target="_blank">🎵</a>
+                <a href="https://wa.me/message/5XF6PFQZNCLTA1" class="social-icon whatsapp" target="_blank">💬</a>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Footer -->
-<footer>
-    <div class="footer-content">
-        <div class="footer-section">
-            <h3>Vinceslink</h3>
-            <p>Everyday Essentials, Smart Gadgets & Trusted Properties — All in One Place.</p>
-            <div class="social-icons">
-                <a href="https://www.facebook.com/share/17XjXSBeR1/?mibextid=wwXIfr" target="_blank" class="social-icon">📘</a>
-                <a href="https://www.instagram.com/vinceslink_1" target="_blank" class="social-icon">📷</a>
-                <a href="https://www.tiktok.com/@vinceslink1?_r=1&_t=ZS-93wGhXnvipZ" target="_blank" class="social-icon">🎵</a>
-                <a href="https://wa.me/message/5XF6PFQZNCLTA1" target="_blank" class="social-icon">💬</a>
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>About Vinceslink</h3>
+                <p>A multi-industry brand focused on providing quality gadgets, daily household essentials, and reliable real estate consultation.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a>
+                <a href="gadget-hub.html">Gadget Hub</a>
+                <a href="super-store.html">Super Store</a>
+                <a href="real-estate.html">Real Estate</a>
+                <a href="#about">About Us</a>
+            </div>
+            <div class="footer-column">
+                <h3>Our Locations</h3>
+                <p><strong>Head Office:</strong> No. 91 Ishaka Road, Ijako, Ogun State</p>
+                <p><strong>Gadget Hub:</strong> No. 12 Ijoko Rd, Sango Ota, Ogun State</p>
+                <p><strong>Branch:</strong> No. 42 Community Road, Egan Ijoko, Ogun State</p>
+            </div>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <p>Phone: +234 907 868 3552</p>
+                <p>Email: vinceslink@gmail.com</p>
+                <p>Monday - Saturday: 8AM - 8PM</p>
             </div>
         </div>
-
-        <div class="footer-section">
-            <h3>Our Locations</h3>
-            <p><strong>Head Office:</strong><br>No. 91 Ishaka Road, Ijako, Ogun State</p>
-            <p><strong>Gadget Hub:</strong><br>No. 12 Ijoko Rd, Sango Ota, Ogun State</p>
-            <p><strong>Branch Office:</strong><br>No. 42 Community Road, Egan Ijoko, Ogun State</p>
+        <div class="footer-bottom">
+            <p class="footer-credits">
+                In collaboration with Paul Feng | Built with 🤍 by <a href="#" target="_blank">Japheth</a>
+            </p>
+            <p>&copy; 2024 Vinceslink. All rights reserved.</p>
         </div>
-
-        <div class="footer-section">
-            <h3>Quick Links</h3>
-            <a href="#home">Home</a>
-            <a href="gadget-hub.html">Gadget Hub</a>
-            <a href="super-store.html">Super Store</a>
-            <a href="real-estate.html">Real Estate</a>
-            <a href="#about">About Us</a>
-            <a href="#faq">FAQ</a>
-        </div>
-
-        <div class="footer-section">
-            <h3>Contact</h3>
-            <p>Phone: +234 907 868 3552</p>
-            <p>Email: vinceslink@gmail.com</p>
-            <p>WhatsApp: <a href="https://wa.me/message/5XF6PFQZNCLTA1" target="_blank">Chat with us</a></p>
-        </div>
-    </div>
-
-    <div class="footer-bottom">
-        <p>In collaboration with Paul Feng</p>
-        <p>Built with 🤍 by <a href="#" target="_blank">Japheth</a></p>
-        <p>&copy; 2025 Vinceslink. All rights reserved.</p>
     </div>
 </footer>
 
 <script>
     // Theme Toggle
-    let isDark = false;
     function toggleTheme() {
-        isDark = !isDark;
-        document.body.classList.toggle('dark-mode');
-        const toggle = document.querySelector('.theme-toggle');
-        toggle.textContent = isDark ? '☀️' : '🌙';
+        const body = document.body;
+        const themeToggle = document.getElementById('themeToggle');
+        
+        if (body.classList.contains('light-mode')) {
+            body.classList.remove('light-mode');
+            body.classList.add('dark-mode');
+            themeToggle.textContent = '🌙';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            body.classList.remove('dark-mode');
+            body.classList.add('light-mode');
+            themeToggle.textContent = '☀️';
+            localStorage.setItem('theme', 'light');
+        }
     }
+
+    // Load saved theme
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        const body = document.body;
+        const themeToggle = document.getElementById('themeToggle');
+        
+        if (savedTheme === 'dark') {
+            body.classList.remove('light-mode');
+            body.classList.add('dark-mode');
+            themeToggle.textContent = '🌙';
+        }
+    });
 
     // Mobile Menu Toggle
     function toggleMobileMenu() {
-        const menu = document.getElementById('mobileMenu');
-        menu.classList.toggle('active');
+        const navMenu = document.getElementById('navMenu');
+        const hamburger = document.querySelector('.hamburger');
+        navMenu.classList.toggle('active');
+        hamburger.classList.toggle('active');
     }
 
-    function toggleServices() {
-        const services = document.getElementById('mobileServices');
-        services.classList.toggle('active');
+    // Dropdown Toggle
+    function toggleDropdown(event) {
+        event.preventDefault();
+        const dropdown = document.getElementById('servicesDropdown');
+        dropdown.classList.toggle('show');
     }
 
-    // Carousel
-    let currentSlide = 0;
-    const track = document.getElementById('carouselTrack');
-    const items = document.querySelectorAll('.carousel-item');
-    const totalSlides = items.length;
-
-    function createDots() {
-        const dotsContainer = document.getElementById('carouselDots');
-        for (let i = 0; i < totalSlides; i++) {
-            const dot = document.createElement('div');
-            dot.className = 'dot';
-            if (i === 0) dot.classList.add('active');
-            dot.onclick = () => goToSlide(i);
-            dotsContainer.appendChild(dot);
+    // Close dropdown when clicking outside
+    window.addEventListener('click', (e) => {
+        if (!e.target.matches('.dropdown-toggle') && !e.target.closest('.dropdown-toggle')) {
+            const dropdown = document.getElementById('servicesDropdown');
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+            }
         }
-    }
+    });
 
-    function updateDots() {
-        const dots = document.querySelectorAll('.dot');
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentSlide);
+    // Carousel Auto-slide
+    let currentSlide = 0;
+    const carouselTrack = document.getElementById('carouselTrack');
+    const indicators = document.querySelectorAll('.indicator');
+    const totalSlides = 5;
+
+    function updateCarousel() {
+        const slideWidth = 300; // 280px item + 20px gap
+        carouselTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentSlide);
         });
     }
 
-    function moveCarousel(direction) {
-        currentSlide += direction;
-        if (currentSlide < 0) currentSlide = totalSlides - 1;
-        if (currentSlide >= totalSlides) currentSlide = 0;
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
         updateCarousel();
-    }
-
-    function goToSlide(index) {
-        currentSlide = index;
-        updateCarousel();
-    }
-
-    function updateCarousel() {
-        const offset = -currentSlide * (280 + 32); // item width + gap
-        track.style.transform = `translateX(${offset}px)`;
-        updateDots();
     }
 
     // Auto-slide every 4 seconds
-    setInterval(() => {
-        moveCarousel(1);
-    }, 4000);
+    setInterval(nextSlide, 4000);
 
-    createDots();
-
-    // FAQ Toggle
-    function toggleFAQ() {
-        const items = document.getElementById('faqItems');
-        items.classList.toggle('active');
-        const btn = document.querySelector('.faq-btn span');
-        btn.textContent = items.classList.contains('active') ? '▲' : '▼';
-    }
-
-    function toggleAnswer(item) {
-        const answer = item.querySelector('.faq-answer');
-        const icon = item.querySelector('.faq-question span');
-        answer.classList.toggle('active');
-        icon.textContent = answer.classList.contains('active') ? '−' : '+';
-    }
-
-    // Newsletter
-    function subscribeNewsletter(e) {
-        e.preventDefault();
-        const email = e.target.querySelector('input').value;
-        alert(`Thank you for subscribing! We'll send updates to ${email}`);
-        e.target.reset();
-    }
+    // Indicator click
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            currentSlide = index;
+            updateCarousel();
+        });
+    });
 
     // Cookie Popup
-    window.onload = function() {
+    window.addEventListener('DOMContentLoaded', () => {
         const cookieAccepted = localStorage.getItem('cookieAccepted');
         if (!cookieAccepted) {
             setTimeout(() => {
-                document.getElementById('cookiePopup').classList.add('active');
+                document.getElementById('cookiePopup').classList.add('show');
             }, 1000);
         }
-    };
+    });
 
     function acceptCookies() {
         localStorage.setItem('cookieAccepted', 'true');
-        document.getElementById('cookiePopup').classList.remove('active');
+        document.getElementById('cookiePopup').classList.remove('show');
     }
 
     function rejectCookies() {
         localStorage.setItem('cookieAccepted', 'rejected');
-        document.getElementById('cookiePopup').classList.remove('active');
+        document.getElementById('cookiePopup').classList.remove('show');
+    }
+
+    // Newsletter Subscription
+    function subscribeNewsletter(event) {
+        event.preventDefault();
+        const email = event.target.querySelector('input').value;
+        alert(`Thank you for subscribing with ${email}! You'll receive updates soon.`);
+        event.target.reset();
     }
 
     // Smooth Scroll
@@ -1913,14 +1679,19 @@
                     behavior: 'smooth',
                     block: 'start'
                 });
+                // Close mobile menu if open
+                const navMenu = document.getElementById('navMenu');
+                const hamburger = document.querySelector('.hamburger');
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
             }
         });
     });
 
     // Active Nav Link on Scroll
     window.addEventListener('scroll', () => {
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
         
         let current = '';
         sections.forEach(section => {
