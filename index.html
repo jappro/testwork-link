@@ -14,64 +14,73 @@
 
 ```
     :root {
-        --primary-blue: #0047AB;
-        --secondary-teal: #17A2B8;
-        --accent-orange: #FF8C42;
-        --dark-gray: #2C3E50;
-        --light-bg: #F8F9FA;
-        --white: #FFFFFF;
+        --primary-blue: #0033cc;
+        --secondary-blue: #1a5cff;
+        --teal: #20b2aa;
+        --orange: #ff8c42;
+        --dark-gray: #2b2b2b;
+        --light-gray: #f5f5f5;
+        --white: #ffffff;
         --text-dark: #333333;
         --text-light: #666666;
-    }
-
-    [data-theme="dark"] {
-        --light-bg: #1a1a1a;
-        --white: #2d2d2d;
-        --text-dark: #e0e0e0;
-        --text-light: #b0b0b0;
-        --dark-gray: #e0e0e0;
     }
 
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         line-height: 1.6;
         color: var(--text-dark);
-        background-color: var(--light-bg);
-        transition: background-color 0.3s ease, color 0.3s ease;
+        background: var(--white);
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark-mode {
+        --white: #1a1a1a;
+        --light-gray: #2b2b2b;
+        --text-dark: #e0e0e0;
+        --text-light: #b0b0b0;
+        --dark-gray: #e0e0e0;
     }
 
     /* Header & Navigation */
     header {
         background: var(--white);
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        position: sticky;
+        position: fixed;
+        width: 100%;
         top: 0;
         z-index: 1000;
-        transition: background-color 0.3s ease;
+        transition: background 0.3s ease;
     }
 
     nav {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1rem 5%;
-        max-width: 1400px;
-        margin: 0 auto;
     }
 
     .logo-container {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 0.8rem;
     }
 
-    .logo-container img {
+    .logo {
         width: 50px;
         height: 50px;
+        background: var(--primary-blue);
         border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: white;
+        font-size: 1.5rem;
     }
 
-    .logo-text {
+    .brand-name {
         font-size: 1.5rem;
         font-weight: bold;
         color: var(--primary-blue);
@@ -80,88 +89,81 @@
     .nav-links {
         display: flex;
         list-style: none;
-        gap: 2rem;
         align-items: center;
+        gap: 2rem;
     }
 
     .nav-links a {
         text-decoration: none;
         color: var(--text-dark);
         font-weight: 500;
-        transition: color 0.3s;
+        transition: color 0.3s ease;
     }
 
     .nav-links a:hover {
         color: var(--primary-blue);
     }
 
-    .services-dropdown {
-        position: relative;
+    .nav-links a.active {
+        color: var(--primary-blue);
+        border-bottom: 2px solid var(--primary-blue);
     }
 
-    .services-dropdown > a {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        cursor: pointer;
+    .services-dropdown {
+        position: relative;
     }
 
     .dropdown-content {
         display: none;
         position: absolute;
-        top: 100%;
-        left: 0;
         background: var(--white);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        border-radius: 8px;
         min-width: 200px;
-        margin-top: 10px;
-        z-index: 100;
-    }
-
-    .dropdown-content a {
-        display: block;
-        padding: 12px 20px;
-        color: var(--text-dark);
-        transition: background 0.3s;
-    }
-
-    .dropdown-content a:hover {
-        background: var(--light-bg);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        margin-top: 0.5rem;
+        padding: 0.5rem 0;
     }
 
     .services-dropdown:hover .dropdown-content {
         display: block;
     }
 
+    .dropdown-content a {
+        display: block;
+        padding: 0.8rem 1.5rem;
+        color: var(--text-dark);
+    }
+
+    .dropdown-content a:hover {
+        background: var(--light-gray);
+    }
+
     .sign-up-btn {
-        background: var(--accent-orange);
-        color: white !important;
-        padding: 10px 25px;
+        background: var(--orange);
+        color: white;
+        padding: 0.6rem 1.5rem;
         border-radius: 25px;
-        border: none;
-        cursor: pointer;
+        text-decoration: none;
         font-weight: 600;
-        transition: transform 0.3s, box-shadow 0.3s;
+        transition: transform 0.3s ease;
     }
 
     .sign-up-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(255, 140, 66, 0.4);
+        transform: scale(1.05);
     }
 
     .theme-toggle {
-        background: var(--light-bg);
-        border: 2px solid var(--primary-blue);
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
-        width: 45px;
-        height: 45px;
+        border: 2px solid var(--text-light);
+        background: transparent;
+        cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        cursor: pointer;
-        font-size: 1.3rem;
-        transition: all 0.3s;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
     }
 
     .theme-toggle:hover {
@@ -177,113 +179,176 @@
     }
 
     .hamburger span {
-        width: 28px;
+        width: 25px;
         height: 3px;
         background: var(--primary-blue);
-        border-radius: 3px;
-        transition: 0.3s;
+        transition: all 0.3s ease;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        height: 100vh;
+        background: var(--white);
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        padding: 2rem;
+        transition: left 0.3s ease;
+        z-index: 2000;
+        overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+        left: 0;
+    }
+
+    .mobile-menu .close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 2rem;
+        cursor: pointer;
+        color: var(--text-dark);
+    }
+
+    .mobile-menu ul {
+        list-style: none;
+        margin-top: 3rem;
+    }
+
+    .mobile-menu ul li {
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--light-gray);
+    }
+
+    .mobile-menu ul li a {
+        text-decoration: none;
+        color: var(--text-dark);
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+
+    .mobile-menu .mobile-services {
+        padding-left: 1rem;
+        display: none;
+    }
+
+    .mobile-menu .mobile-services.active {
+        display: block;
+    }
+
+    .mobile-menu .mobile-services a {
+        display: block;
+        padding: 0.5rem 0;
+        font-size: 1rem;
     }
 
     /* Hero Section */
     .hero {
-        background: linear-gradient(135deg, #0047AB 0%, #17A2B8 100%);
-        color: white;
-        padding: 80px 5% 100px;
-        text-align: center;
+        background: linear-gradient(135deg, #0033cc 0%, #1a5cff 50%, #4d94ff 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: relative;
         overflow: hidden;
+        margin-top: 80px;
+        padding: 4rem 2rem;
     }
 
     .hero::before {
         content: '';
         position: absolute;
-        width: 400px;
-        height: 400px;
+        top: -50%;
+        left: -10%;
+        width: 500px;
+        height: 500px;
         background: rgba(255, 255, 255, 0.1);
         border-radius: 50%;
-        top: -200px;
-        right: -100px;
         animation: float 6s ease-in-out infinite;
     }
 
     .hero::after {
         content: '';
         position: absolute;
-        width: 300px;
-        height: 300px;
-        background: rgba(255, 255, 255, 0.05);
+        bottom: -30%;
+        right: -5%;
+        width: 400px;
+        height: 400px;
+        background: rgba(255, 255, 255, 0.1);
         border-radius: 50%;
-        bottom: -150px;
-        left: -100px;
-        animation: float 8s ease-in-out infinite;
+        animation: float 8s ease-in-out infinite reverse;
     }
 
     @keyframes float {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-20px); }
+        0%, 100% { transform: translateY(0) translateX(0); }
+        50% { transform: translateY(-20px) translateX(20px); }
     }
 
     .hero-content {
+        text-align: center;
+        color: white;
+        max-width: 1200px;
         position: relative;
         z-index: 1;
-        max-width: 900px;
-        margin: 0 auto;
     }
 
-    .hero h1 {
+    .hero-content h1 {
         font-size: 4rem;
         font-weight: 900;
         margin-bottom: 1rem;
         letter-spacing: 2px;
-        text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
     }
 
     .hero-tagline {
         font-size: 1.8rem;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
         font-weight: 300;
     }
 
     .hero-description {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         margin-bottom: 3rem;
-        opacity: 0.95;
-        max-width: 700px;
+        line-height: 1.8;
+        max-width: 800px;
         margin-left: auto;
         margin-right: auto;
     }
 
     .hero-buttons {
         display: flex;
-        gap: 20px;
+        gap: 2rem;
         justify-content: center;
         flex-wrap: wrap;
+        margin-bottom: 4rem;
     }
 
     .hero-btn {
-        padding: 15px 35px;
+        padding: 1rem 2.5rem;
         border-radius: 50px;
         font-size: 1.1rem;
         font-weight: 600;
-        border: 2px solid white;
-        cursor: pointer;
-        transition: all 0.3s;
         text-decoration: none;
         display: inline-flex;
         align-items: center;
-        gap: 10px;
+        gap: 0.8rem;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
     }
 
     .hero-btn.primary {
         background: var(--primary-blue);
         color: white;
-        border-color: var(--primary-blue);
+        border-color: white;
     }
 
     .hero-btn.secondary {
-        background: var(--accent-orange);
+        background: var(--orange);
         color: white;
-        border-color: var(--accent-orange);
     }
 
     .hero-btn.tertiary {
@@ -294,78 +359,110 @@
 
     .hero-btn:hover {
         transform: translateY(-3px);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
 
     /* Product Carousel */
-    .carousel-section {
-        background: linear-gradient(135deg, #17A2B8 0%, #0047AB 100%);
-        padding: 60px 5%;
+    .product-carousel-section {
+        background: linear-gradient(180deg, #1a5cff 0%, #4d94ff 50%, rgba(77, 148, 255, 0.3) 100%);
+        padding: 3rem 2rem;
         position: relative;
     }
 
     .carousel-container {
-        max-width: 1200px;
+        max-width: 1400px;
         margin: 0 auto;
-        position: relative;
         background: rgba(255, 255, 255, 0.15);
         backdrop-filter: blur(10px);
-        border-radius: 20px;
-        padding: 40px 20px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        border-radius: 30px;
+        padding: 3rem 2rem;
+        position: relative;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+
+    .carousel-wrapper {
+        position: relative;
+        overflow: hidden;
     }
 
     .carousel-track {
         display: flex;
-        gap: 30px;
-        overflow: hidden;
-        padding: 20px;
+        gap: 2rem;
         transition: transform 0.5s ease;
     }
 
     .carousel-item {
         min-width: 280px;
         background: white;
-        border-radius: 15px;
-        padding: 20px;
+        border-radius: 20px;
+        padding: 2rem;
         text-align: center;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        transition: transform 0.3s;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         flex-shrink: 0;
     }
 
-    .carousel-item:hover {
-        transform: translateY(-5px);
-    }
-
-    .carousel-item img {
+    .carousel-item-image {
         width: 100%;
         height: 200px;
-        object-fit: cover;
-        border-radius: 10px;
-        margin-bottom: 15px;
+        background: var(--light-gray);
+        border-radius: 15px;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
     }
 
     .carousel-item h3 {
-        color: var(--primary-blue);
+        color: var(--text-dark);
         font-size: 1.2rem;
-        margin-bottom: 10px;
+        margin-bottom: 0.5rem;
+    }
+
+    .carousel-controls {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+        padding: 0 1rem;
+        pointer-events: none;
+    }
+
+    .carousel-btn {
+        width: 50px;
+        height: 50px;
+        background: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        pointer-events: all;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+    }
+
+    .carousel-btn:hover {
+        background: var(--primary-blue);
+        color: white;
+        transform: scale(1.1);
     }
 
     .carousel-dots {
         display: flex;
         justify-content: center;
-        gap: 10px;
-        margin-top: 30px;
+        gap: 0.5rem;
+        margin-top: 2rem;
     }
 
     .dot {
         width: 12px;
         height: 12px;
-        border-radius: 50%;
         background: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
         cursor: pointer;
-        transition: background 0.3s;
+        transition: all 0.3s ease;
     }
 
     .dot.active {
@@ -376,143 +473,270 @@
 
     /* Business Divisions */
     .business-divisions {
-        padding: 80px 5%;
-        background: var(--light-bg);
+        background: linear-gradient(180deg, rgba(77, 148, 255, 0.3) 0%, var(--light-gray) 100%);
+        padding: 5rem 2rem;
+    }
+
+    body.dark-mode .business-divisions {
+        background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
     }
 
     .section-title {
         text-align: center;
         font-size: 2.5rem;
-        margin-bottom: 50px;
-        color: var(--dark-gray);
-        font-weight: 700;
+        font-weight: 900;
+        margin-bottom: 3rem;
+        color: var(--text-dark);
+        text-transform: uppercase;
+        letter-spacing: 2px;
     }
 
     .divisions-grid {
+        max-width: 1400px;
+        margin: 0 auto;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 40px;
-        max-width: 1300px;
-        margin: 0 auto;
+        gap: 2rem;
     }
 
     .division-card {
         background: var(--white);
         border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    body.dark-mode .division-card {
+        background: #2b2b2b;
     }
 
     .division-card:hover {
         transform: translateY(-10px);
-        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
     }
 
-    .division-card img {
+    .division-image {
         width: 100%;
-        height: 280px;
-        object-fit: cover;
+        height: 300px;
+        background: var(--light-gray);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+        position: relative;
     }
 
     .division-content {
-        padding: 30px;
-        text-align: center;
+        padding: 2rem;
+        background: rgba(43, 43, 43, 0.9);
+        color: white;
     }
 
-    .division-content h2 {
+    body.dark-mode .division-content {
+        background: rgba(26, 26, 30, 0.95);
+    }
+
+    .division-content h3 {
         font-size: 1.8rem;
-        color: var(--dark-gray);
-        margin-bottom: 15px;
+        margin-bottom: 1rem;
+        font-weight: 800;
     }
 
     .division-content p {
-        color: var(--text-light);
-        margin-bottom: 25px;
-        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.9);
     }
 
     .division-btn {
-        background: var(--accent-orange);
+        background: var(--orange);
         color: white;
-        padding: 12px 30px;
+        padding: 0.8rem 2rem;
         border-radius: 25px;
-        border: none;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s;
         text-decoration: none;
         display: inline-block;
+        font-weight: 600;
+        transition: all 0.3s ease;
     }
 
     .division-btn:hover {
-        background: #e67c35;
+        background: #ff7020;
         transform: scale(1.05);
     }
 
     /* Marketplace Section */
     .marketplace {
-        background: linear-gradient(135deg, #17A2B8 0%, #0047AB 100%);
-        padding: 80px 5%;
-        color: white;
+        background: linear-gradient(135deg, #20b2aa 0%, #1a5cff 100%);
+        padding: 5rem 2rem;
+        position: relative;
+        overflow: hidden;
     }
 
     .marketplace-content {
-        max-width: 1200px;
+        max-width: 1400px;
         margin: 0 auto;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 60px;
+        gap: 4rem;
         align-items: center;
     }
 
     .marketplace-text h2 {
         font-size: 3rem;
-        margin-bottom: 20px;
-        font-weight: 700;
+        font-weight: 900;
+        color: white;
+        margin-bottom: 1.5rem;
     }
 
     .marketplace-text h3 {
         font-size: 2rem;
-        margin-bottom: 20px;
-        font-weight: 300;
+        color: white;
+        margin-bottom: 1rem;
     }
 
     .marketplace-text p {
-        font-size: 1.1rem;
-        margin-bottom: 30px;
-        opacity: 0.95;
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 2rem;
+        line-height: 1.8;
     }
 
-    .coming-soon-badge {
-        background: rgba(255, 255, 255, 0.2);
+    .coming-soon-btn {
+        background: rgba(255, 255, 255, 0.3);
         backdrop-filter: blur(10px);
-        border: 2px solid white;
-        padding: 15px 40px;
+        color: white;
+        padding: 1rem 3rem;
         border-radius: 50px;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+        font-weight: 700;
+        text-decoration: none;
         display: inline-flex;
         align-items: center;
-        gap: 15px;
-        font-weight: 600;
+        gap: 1rem;
+        border: 2px solid white;
+        transition: all 0.3s ease;
     }
 
-    .marketplace-mockup {
+    .coming-soon-btn:hover {
+        background: white;
+        color: var(--primary-blue);
+        transform: scale(1.05);
+    }
+
+    .marketplace-visual {
         position: relative;
         display: flex;
+        align-items: center;
         justify-content: center;
     }
 
-    .marketplace-mockup img {
-        max-width: 100%;
-        height: auto;
-        filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+    .shopping-cart-image {
+        max-width: 400px;
+        width: 100%;
+        margin-right: -100px;
+        z-index: 1;
+    }
+
+    .phone-mockup {
+        max-width: 350px;
+        width: 100%;
+        background: #1a1a1a;
+        border-radius: 40px;
+        padding: 1rem;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        position: relative;
+        z-index: 2;
+    }
+
+    .phone-screen {
+        background: white;
+        border-radius: 30px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .phone-header {
+        background: var(--primary-blue);
+        color: white;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+    }
+
+    .phone-tabs {
+        display: flex;
+        background: white;
+        padding: 0.5rem;
+        gap: 0.5rem;
+        border-bottom: 1px solid #eee;
+    }
+
+    .phone-tab {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .phone-tab.active {
+        background: var(--primary-blue);
+        color: white;
+    }
+
+    .phone-products {
+        padding: 1rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .phone-product {
+        background: var(--light-gray);
+        border-radius: 10px;
+        padding: 0.8rem;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .phone-product:hover {
+        transform: scale(1.05);
+    }
+
+    .phone-product-image {
+        width: 100%;
+        height: 60px;
+        background: white;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+
+    .phone-product-name {
+        font-size: 0.7rem;
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+    }
+
+    .phone-product-price {
+        font-size: 0.8rem;
+        color: var(--primary-blue);
+        font-weight: 700;
     }
 
     /* About Section */
     .about {
-        padding: 80px 5%;
-        background: var(--light-bg);
+        background: var(--light-gray);
+        padding: 5rem 2rem;
         position: relative;
         overflow: hidden;
     }
@@ -522,141 +746,158 @@
         position: absolute;
         top: 0;
         left: 0;
-        right: 0;
-        bottom: 0;
-        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23E8F4F8" fill-opacity="0.6" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,101.3C1248,85,1344,75,1392,69.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-        background-repeat: no-repeat;
-        background-position: bottom;
-        background-size: cover;
-        opacity: 0.5;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="wave" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M0 50 Q 25 25, 50 50 T 100 50" fill="none" stroke="rgba(26,92,255,0.1)" stroke-width="2"/></pattern></defs><rect width="100%" height="100%" fill="url(%23wave)"/></svg>');
+        opacity: 0.3;
     }
 
     .about-content {
-        max-width: 1200px;
+        max-width: 1400px;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
-        align-items: center;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 4rem;
+        align-items: start;
         position: relative;
         z-index: 1;
     }
 
     .about-text h2 {
         font-size: 2.5rem;
-        color: var(--dark-gray);
-        margin-bottom: 30px;
-        font-weight: 700;
+        font-weight: 900;
+        margin-bottom: 2rem;
+        color: var(--text-dark);
     }
 
-    .about-subsection {
-        margin-bottom: 30px;
+    .about-story, .about-mission, .about-vision {
+        margin-bottom: 2.5rem;
     }
 
-    .about-subsection h3 {
-        font-size: 1.5rem;
-        margin-bottom: 15px;
+    .about-story h3 {
+        font-size: 1.8rem;
         color: var(--primary-blue);
+        margin-bottom: 1rem;
+        font-weight: 800;
     }
 
-    .about-subsection.mission h3 {
-        color: var(--secondary-teal);
+    .about-mission h3 {
+        font-size: 1.8rem;
+        color: var(--teal);
+        margin-bottom: 1rem;
+        font-weight: 800;
     }
 
-    .about-subsection.vision h3 {
-        color: var(--accent-orange);
+    .about-vision h3 {
+        font-size: 1.8rem;
+        color: var(--orange);
+        margin-bottom: 1rem;
+        font-weight: 800;
     }
 
-    .about-subsection p {
-        color: var(--text-light);
+    .about-text p {
+        font-size: 1.1rem;
         line-height: 1.8;
+        color: var(--text-light);
     }
 
     .founder-card {
-        background: var(--white);
+        background: white;
         border-radius: 20px;
-        padding: 40px;
+        padding: 2rem;
         text-align: center;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        position: sticky;
+        top: 100px;
     }
 
-    .founder-card img {
+    body.dark-mode .founder-card {
+        background: #2b2b2b;
+    }
+
+    .founder-image {
         width: 200px;
         height: 200px;
         border-radius: 50%;
-        object-fit: cover;
-        margin-bottom: 20px;
+        background: var(--light-gray);
+        margin: 0 auto 1.5rem;
         border: 5px solid var(--primary-blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
     }
 
     .founder-card h3 {
         font-size: 2rem;
-        color: var(--dark-gray);
-        margin-bottom: 10px;
+        color: var(--primary-blue);
+        margin-bottom: 0.5rem;
+        font-weight: 800;
     }
 
-    .founder-card .title {
-        color: var(--secondary-teal);
+    .founder-title {
+        color: var(--teal);
         font-size: 1.2rem;
-        margin-bottom: 20px;
         font-weight: 600;
+        margin-bottom: 1.5rem;
     }
 
-    .founder-card p {
+    .founder-bio {
+        font-size: 1rem;
+        line-height: 1.6;
         color: var(--text-light);
-        line-height: 1.8;
     }
 
     /* FAQ Section */
     .faq {
-        padding: 80px 5%;
         background: var(--white);
+        padding: 5rem 2rem;
     }
 
-    .faq-content {
-        max-width: 900px;
+    .faq-container {
+        max-width: 1200px;
         margin: 0 auto;
         text-align: center;
     }
 
-    .faq h2 {
+    .faq-container h2 {
         font-size: 2.5rem;
-        color: var(--accent-orange);
-        margin-bottom: 20px;
-        font-weight: 700;
+        font-weight: 900;
+        color: var(--orange);
+        margin-bottom: 1rem;
     }
 
-    .faq-description {
-        color: var(--text-light);
-        margin-bottom: 40px;
+    .faq-subtitle {
         font-size: 1.1rem;
+        color: var(--text-light);
+        margin-bottom: 3rem;
     }
 
-    .faq-button {
+    .faq-btn {
         background: var(--primary-blue);
         color: white;
-        padding: 15px 40px;
-        border-radius: 25px;
+        padding: 1rem 3rem;
+        border-radius: 50px;
         border: none;
         font-size: 1.1rem;
         font-weight: 600;
         cursor: pointer;
-        transition: all 0.3s;
         display: inline-flex;
         align-items: center;
-        gap: 10px;
+        gap: 0.8rem;
+        margin-bottom: 3rem;
+        transition: all 0.3s ease;
     }
 
-    .faq-button:hover {
-        background: #003d8f;
-        transform: translateY(-3px);
-        box-shadow: 0 6px 20px rgba(0,71,171,0.3);
+    .faq-btn:hover {
+        background: var(--secondary-blue);
+        transform: scale(1.05);
     }
 
     .faq-items {
         display: none;
-        margin-top: 40px;
         text-align: left;
+        margin-bottom: 3rem;
     }
 
     .faq-items.active {
@@ -664,21 +905,26 @@
     }
 
     .faq-item {
-        background: var(--light-bg);
+        background: var(--light-gray);
         border-radius: 10px;
-        padding: 20px;
-        margin-bottom: 15px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
         cursor: pointer;
-        transition: all 0.3s;
+        transition: all 0.3s ease;
+    }
+
+    body.dark-mode .faq-item {
+        background: #2b2b2b;
     }
 
     .faq-item:hover {
-        background: #e9ecef;
+        background: rgba(26, 92, 255, 0.1);
     }
 
     .faq-question {
+        font-size: 1.2rem;
         font-weight: 600;
-        color: var(--dark-gray);
+        color: var(--text-dark);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -686,129 +932,147 @@
 
     .faq-answer {
         display: none;
-        margin-top: 15px;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(0,0,0,0.1);
         color: var(--text-light);
-        line-height: 1.8;
+        line-height: 1.6;
     }
 
-    .faq-item.active .faq-answer {
+    .faq-answer.active {
         display: block;
     }
 
     .legal-links {
         display: flex;
         justify-content: center;
-        gap: 40px;
-        margin-top: 40px;
+        gap: 2rem;
         flex-wrap: wrap;
     }
 
     .legal-link {
-        display: flex;
-        align-items: center;
-        gap: 10px;
+        background: white;
+        padding: 1rem 2rem;
+        border-radius: 10px;
         text-decoration: none;
         color: var(--text-dark);
         font-weight: 600;
-        transition: color 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+
+    body.dark-mode .legal-link {
+        background: #2b2b2b;
     }
 
     .legal-link:hover {
-        color: var(--primary-blue);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
 
     /* Contact Section */
     .contact {
-        padding: 80px 5%;
-        background: var(--light-bg);
+        background: var(--light-gray);
+        padding: 5rem 2rem;
     }
 
-    .contact h2 {
-        font-size: 2.5rem;
-        text-align: center;
-        margin-bottom: 50px;
-        color: var(--dark-gray);
-        font-weight: 700;
-    }
-
-    .contact-content {
-        max-width: 1200px;
+    .contact-container {
+        max-width: 1400px;
         margin: 0 auto;
     }
 
-    .newsletter {
-        background: var(--white);
-        padding: 40px;
-        border-radius: 20px;
+    .contact-container h2 {
         text-align: center;
-        margin-bottom: 50px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        font-size: 2.5rem;
+        font-weight: 900;
+        margin-bottom: 3rem;
+        color: var(--text-dark);
+    }
+
+    .newsletter {
+        background: white;
+        border-radius: 20px;
+        padding: 3rem;
+        text-align: center;
+        margin-bottom: 3rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    body.dark-mode .newsletter {
+        background: #2b2b2b;
     }
 
     .newsletter h3 {
         font-size: 1.8rem;
         color: var(--primary-blue);
-        margin-bottom: 15px;
+        margin-bottom: 1rem;
+        font-weight: 800;
     }
 
     .newsletter p {
         color: var(--text-light);
-        margin-bottom: 25px;
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
     }
 
     .newsletter-form {
         display: flex;
-        gap: 15px;
+        gap: 1rem;
         max-width: 600px;
         margin: 0 auto;
-        flex-wrap: wrap;
-        justify-content: center;
     }
 
-    .newsletter-form input {
+    .newsletter-input {
         flex: 1;
-        min-width: 250px;
-        padding: 15px 20px;
-        border: 2px solid #ddd;
-        border-radius: 25px;
+        padding: 1rem 1.5rem;
+        border: 2px solid var(--light-gray);
+        border-radius: 50px;
         font-size: 1rem;
         outline: none;
-        transition: border-color 0.3s;
+        transition: border-color 0.3s ease;
     }
 
-    .newsletter-form input:focus {
-        border-color: var(--secondary-teal);
+    .newsletter-input:focus {
+        border-color: var(--primary-blue);
     }
 
-    .newsletter-form button {
-        background: var(--secondary-teal);
+    .newsletter-btn {
+        background: var(--teal);
         color: white;
-        padding: 15px 40px;
+        padding: 1rem 2.5rem;
         border: none;
-        border-radius: 25px;
+        border-radius: 50px;
+        font-size: 1rem;
         font-weight: 600;
         cursor: pointer;
-        transition: all 0.3s;
+        transition: all 0.3s ease;
     }
 
-    .newsletter-form button:hover {
-        background: #138496;
+    .newsletter-btn:hover {
+        background: #1a9d96;
         transform: scale(1.05);
     }
 
-    .contact-methods {
+    .contact-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px;
+        gap: 2rem;
     }
 
     .contact-card {
-        background: var(--white);
-        padding: 30px;
+        background: white;
         border-radius: 15px;
+        padding: 2rem;
         text-align: center;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        transition: transform 0.3s;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    body.dark-mode .contact-card {
+        background: #2b2b2b;
     }
 
     .contact-card:hover {
@@ -816,22 +1080,23 @@
     }
 
     .contact-icon {
-        width: 60px;
-        height: 60px;
+        width: 70px;
+        height: 70px;
         background: var(--primary-blue);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto 20px;
-        font-size: 1.5rem;
+        margin: 0 auto 1rem;
+        font-size: 2rem;
         color: white;
     }
 
     .contact-card h3 {
         font-size: 1.3rem;
         color: var(--primary-blue);
-        margin-bottom: 15px;
+        margin-bottom: 1rem;
+        font-weight: 700;
     }
 
     .contact-card p {
@@ -848,108 +1113,106 @@
         color: var(--primary-blue);
     }
 
-    .social-links {
+    /* Footer */
+    footer {
+        background: var(--dark-gray);
+        color: white;
+        padding: 3rem 2rem 1rem;
+    }
+
+    body.dark-mode footer {
+        background: #0a0a0a;
+    }
+
+    .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        color: var(--orange);
+    }
+
+    .footer-section p, .footer-section a {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.8;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .footer-section a:hover {
+        color: white;
+    }
+
+    .social-icons {
         display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin-top: 50px;
+        gap: 1rem;
+        margin-top: 1rem;
     }
 
     .social-icon {
-        width: 50px;
-        height: 50px;
-        background: var(--primary-blue);
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         color: white;
-        font-size: 1.3rem;
         text-decoration: none;
-        transition: all 0.3s;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
     }
 
     .social-icon:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 15px rgba(0,71,171,0.3);
-    }
-
-    .social-icon.facebook { background: #1877F2; }
-    .social-icon.instagram { background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF); }
-    .social-icon.tiktok { background: #000000; }
-    .social-icon.whatsapp { background: #25D366; }
-
-    /* Footer */
-    footer {
-        background: var(--dark-gray);
-        color: white;
-        padding: 50px 5% 20px;
-    }
-
-    .footer-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 40px;
-        margin-bottom: 30px;
-    }
-
-    .footer-section h3 {
-        margin-bottom: 20px;
-        font-size: 1.3rem;
-    }
-
-    .footer-section p {
-        line-height: 1.8;
-        opacity: 0.9;
-    }
-
-    .footer-section a {
-        color: white;
-        text-decoration: none;
-        opacity: 0.9;
-        transition: opacity 0.3s;
-    }
-
-    .footer-section a:hover {
-        opacity: 1;
+        background: var(--primary-blue);
+        transform: scale(1.1);
     }
 
     .footer-bottom {
-        border-top: 1px solid rgba(255,255,255,0.1);
-        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 2rem;
         text-align: center;
-        color: rgba(255,255,255,0.7);
+        color: rgba(255, 255, 255, 0.6);
     }
 
     .footer-bottom p {
-        margin-bottom: 10px;
+        margin-bottom: 0.5rem;
     }
 
     .footer-bottom a {
-        color: var(--accent-orange);
+        color: var(--orange);
         text-decoration: none;
     }
 
     .footer-bottom a:hover {
-        text-decoration: underline;
+        color: white;
     }
 
     /* Cookie Popup */
     .cookie-popup {
         position: fixed;
-        bottom: 20px;
+        bottom: 2rem;
         left: 50%;
         transform: translateX(-50%);
-        background: var(--white);
-        padding: 25px 30px;
+        background: white;
         border-radius: 15px;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        padding: 2rem;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
         max-width: 500px;
-        width: 90%;
-        z-index: 10000;
+        z-index: 3000;
         display: none;
+    }
+
+    body.dark-mode .cookie-popup {
+        background: #2b2b2b;
     }
 
     .cookie-popup.active {
@@ -969,29 +1232,30 @@
     }
 
     .cookie-popup h3 {
-        margin-bottom: 10px;
-        color: var(--dark-gray);
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        color: var(--text-dark);
     }
 
     .cookie-popup p {
-        margin-bottom: 20px;
         color: var(--text-light);
-        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
     }
 
     .cookie-buttons {
         display: flex;
-        gap: 15px;
-        flex-wrap: wrap;
+        gap: 1rem;
     }
 
     .cookie-btn {
-        padding: 10px 25px;
-        border-radius: 25px;
+        flex: 1;
+        padding: 0.8rem;
         border: none;
+        border-radius: 8px;
         font-weight: 600;
         cursor: pointer;
-        transition: all 0.3s;
+        transition: all 0.3s ease;
     }
 
     .cookie-btn.accept {
@@ -1000,7 +1264,7 @@
     }
 
     .cookie-btn.reject {
-        background: var(--light-bg);
+        background: var(--light-gray);
         color: var(--text-dark);
     }
 
@@ -1009,41 +1273,20 @@
     }
 
     /* Responsive Design */
-    @media (max-width: 968px) {
-        .nav-links {
-            position: fixed;
-            left: -100%;
-            top: 70px;
-            flex-direction: column;
-            background: var(--white);
-            width: 100%;
-            padding: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: left 0.3s;
-            align-items: flex-start;
-        }
-
-        .nav-links.active {
-            left: 0;
-        }
-
+    @media (max-width: 768px) {
         .hamburger {
             display: flex;
         }
 
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
+        .nav-links {
+            display: none;
         }
 
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
+        .mobile-menu {
+            display: block;
         }
 
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
-        .hero h1 {
+        .hero-content h1 {
             font-size: 2.5rem;
         }
 
@@ -1051,26 +1294,8 @@
             font-size: 1.3rem;
         }
 
-        .marketplace-content {
-            grid-template-columns: 1fr;
-        }
-
-        .about-content {
-            grid-template-columns: 1fr;
-        }
-
-        .divisions-grid {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    @media (max-width: 600px) {
-        .hero h1 {
-            font-size: 2rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
+        .hero-description {
+            font-size: 1rem;
         }
 
         .hero-buttons {
@@ -1078,12 +1303,36 @@
             align-items: center;
         }
 
+        .divisions-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .marketplace-content {
+            grid-template-columns: 1fr;
+        }
+
+        .shopping-cart-image {
+            display: none;
+        }
+
+        .about-content {
+            grid-template-columns: 1fr;
+        }
+
         .newsletter-form {
             flex-direction: column;
         }
 
-        .newsletter-form input {
-            width: 100%;
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+            grid-template-columns: 1fr;
+        }
+
+        .carousel-item {
+            min-width: 200px;
         }
     }
 </style>
@@ -1091,135 +1340,159 @@
 
 </head>
 <body>
+    <!-- Cookie Popup -->
+    <div class="cookie-popup" id="cookiePopup">
+        <h3>🍪 Cookie Notice</h3>
+        <p>We use cookies to enhance your browsing experience and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.</p>
+        <div class="cookie-buttons">
+            <button class="cookie-btn accept" onclick="acceptCookies()">Accept All</button>
+            <button class="cookie-btn reject" onclick="rejectCookies()">Reject Non-Essential</button>
+        </div>
+    </div>
 
 ```
-<!-- Cookie Consent Popup -->
-<div class="cookie-popup active" id="cookiePopup">
-    <h3>🍪 Cookie Notice</h3>
-    <p>We use cookies to enhance your browsing experience and provide personalized content. By continuing to use our site, you agree to our use of cookies.</p>
-    <div class="cookie-buttons">
-        <button class="cookie-btn accept" onclick="acceptCookies()">Accept All</button>
-        <button class="cookie-btn reject" onclick="rejectCookies()">Reject Non-Essential</button>
-    </div>
-</div>
-
 <!-- Header -->
 <header>
     <nav>
         <div class="logo-container">
-            <img src="images/logo.jpeg" alt="Vinceslink Logo">
-            <span class="logo-text">vinceslink</span>
+            <div class="logo">VL</div>
+            <span class="brand-name">vinceslink</span>
         </div>
 
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#home">Home</a></li>
+        <div class="hamburger" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
             <li class="services-dropdown">
-                <a>Services ▾</a>
+                <a href="#services">Services ▼</a>
                 <div class="dropdown-content">
                     <a href="gadget-hub.html">Gadget Hub</a>
                     <a href="super-store.html">Super Store</a>
-                    <a href="realty.html">Real Estate</a>
+                    <a href="real-estate.html">Real Estate</a>
                 </div>
             </li>
-            <li><a href="#marketplace">Shop Now</a></li>
+            <li><a href="#shop-now">Shop Now</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="#" class="sign-up-btn">Sign Up</a></li>
-            <li>
-                <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">
-                    ☀️
-                </button>
-            </li>
+            <li><a href="#signup" class="sign-up-btn">Sign Up</a></li>
+            <li><button class="theme-toggle" onclick="toggleTheme()">🌙</button></li>
         </ul>
-
-        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
     </nav>
 </header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+    <span class="close-btn" onclick="toggleMobileMenu()">×</span>
+    <ul>
+        <li><a href="#home" onclick="toggleMobileMenu()">Home</a></li>
+        <li>
+            <a href="#services" onclick="toggleServices()">Services ▼</a>
+            <div class="mobile-services" id="mobileServices">
+                <a href="gadget-hub.html">Gadget Hub</a>
+                <a href="super-store.html">Super Store</a>
+                <a href="real-estate.html">Real Estate</a>
+            </div>
+        </li>
+        <li><a href="#shop-now" onclick="toggleMobileMenu()">Shop Now</a></li>
+        <li><a href="#about" onclick="toggleMobileMenu()">About</a></li>
+        <li><a href="#faq" onclick="toggleMobileMenu()">FAQ</a></li>
+        <li><a href="#contact" onclick="toggleMobileMenu()">Contact</a></li>
+        <li><a href="#signup" onclick="toggleMobileMenu()">Sign Up</a></li>
+        <li><button class="theme-toggle" onclick="toggleTheme()">🌙</button></li>
+    </ul>
+</div>
 
 <!-- Hero Section -->
 <section class="hero" id="home">
     <div class="hero-content">
         <h1>VINCESLINK</h1>
         <p class="hero-tagline">Everyday Essentials • Gadgets • Realty</p>
-        <p class="hero-description">Everyday essentials, smart gadgets, and trusted real estate solutions—all in one place with Vinceslink.</p>
-        
+        <p class="hero-description">
+            Everyday essentials, smart gadgets, and trusted real estate solutions—all in one place with Vinceslink.
+        </p>
         <div class="hero-buttons">
-            <a href="#divisions" class="hero-btn primary">
-                ⚡ Explore Gadgets
+            <a href="gadget-hub.html" class="hero-btn primary">
+                <span>⚡</span> Explore Gadgets
             </a>
-            <a href="#divisions" class="hero-btn secondary">
-                🛒 Shop Essentials
+            <a href="super-store.html" class="hero-btn secondary">
+                <span>🛒</span> Shop Essentials
             </a>
-            <a href="#divisions" class="hero-btn tertiary">
-                🏡 View Properties
+            <a href="real-estate.html" class="hero-btn tertiary">
+                <span>🏠</span> View Properties
             </a>
         </div>
     </div>
 </section>
 
 <!-- Product Carousel -->
-<section class="carousel-section">
+<section class="product-carousel-section">
     <div class="carousel-container">
-        <div class="carousel-track" id="carouselTrack">
-            <div class="carousel-item">
-                <img src="images/charger.jpeg" alt="PF-014 Fast Charger">
-                <h3>PF-014 Charger</h3>
+        <div class="carousel-wrapper">
+            <div class="carousel-track" id="carouselTrack">
+                <!-- Product 1: Charger -->
+                <div class="carousel-item">
+                    <div class="carousel-item-image">🔌</div>
+                    <h3>PF-014 Charger</h3>
+                </div>
+                <!-- Product 2: Headset -->
+                <div class="carousel-item">
+                    <div class="carousel-item-image">🎧</div>
+                    <h3>P-31 Headset</h3>
+                </div>
+                <!-- Product 3: Ice Cream -->
+                <div class="carousel-item">
+                    <div class="carousel-item-image">🍦</div>
+                    <h3>Fan Ice</h3>
+                </div>
+                <!-- Product 4: Cosmetics -->
+                <div class="carousel-item">
+                    <div class="carousel-item-image">💄</div>
+                    <h3>Cosmetics</h3>
+                </div>
+                <!-- Product 5: Land -->
+                <div class="carousel-item">
+                    <div class="carousel-item-image">🏞️</div>
+                    <h3>Land</h3>
+                </div>
+                <!-- Product 6: House -->
+                <div class="carousel-item">
+                    <div class="carousel-item-image">🏡</div>
+                    <h3>House</h3>
+                </div>
             </div>
-            <div class="carousel-item">
-                <img src="images/headset.jpeg" alt="P-31 Headset">
-                <h3>P-31 Headset</h3>
-            </div>
-            <div class="carousel-item">
-                <img src="images/icecream.jpeg" alt="FanIce Ice Cream">
-                <h3>Fanice</h3>
-            </div>
-            <div class="carousel-item">
-                <img src="images/cosmetics.jpeg" alt="Cosmetics">
-                <h3>Cosmetics</h3>
-            </div>
-            <div class="carousel-item">
-                <img src="images/land.png" alt="Land Property">
-                <h3>Land</h3>
-            </div>
-            <div class="carousel-item">
-                <img src="images/house.jpeg" alt="House Property">
-                <h3>House</h3>
+            <div class="carousel-controls">
+                <button class="carousel-btn" onclick="moveCarousel(-1)">‹</button>
+                <button class="carousel-btn" onclick="moveCarousel(1)">›</button>
             </div>
         </div>
-        <div class="carousel-dots">
-            <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-        </div>
+        <div class="carousel-dots" id="carouselDots"></div>
     </div>
 </section>
 
 <!-- Business Divisions -->
-<section class="business-divisions" id="divisions">
+<section class="business-divisions" id="services">
     <h2 class="section-title">OUR BUSINESS DIVISIONS</h2>
     <div class="divisions-grid">
         <!-- Gadget Hub -->
         <div class="division-card">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='280' viewBox='0 0 400 280'%3E%3Cdefs%3E%3ClinearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2317A2B8;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%230047AB;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='280' fill='url(%23grad1)'/%3E%3Ccircle cx='200' cy='140' r='60' fill='white' opacity='0.3'/%3E%3Ctext x='200' y='150' font-family='Arial' font-size='24' fill='white' text-anchor='middle'%3E⚡ GADGETS%3C/text%3E%3C/svg%3E" alt="Vinceslink Gadget Hub">
+            <div class="division-image">📱</div>
             <div class="division-content">
-                <h2>Vinceslink Gadget Hub</h2>
+                <h3>Vinceslink<br>Gadget Hub</h3>
                 <p>Your one-stop destination for smart gadgets and cutting-edge electronics.</p>
-                <a href="gadget-hub.html" class="division-btn">View products</a>
+                <a href="gadget-hub.html" class="division-btn">View Products</a>
             </div>
         </div>
 
         <!-- Super Store -->
         <div class="division-card">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='280' viewBox='0 0 400 280'%3E%3Cdefs%3E%3ClinearGradient id='grad2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2317A2B8;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%230047AB;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='280' fill='url(%23grad2)'/%3E%3Ccircle cx='200' cy='140' r='60' fill='white' opacity='0.3'/%3E%3Ctext x='200' y='150' font-family='Arial' font-size='24' fill='white' text-anchor='middle'%3E🛒 ESSENTIALS%3C/text%3E%3C/svg%3E" alt="Vinceslink Super Store">
+            <div class="division-image">🛒</div>
             <div class="division-content">
-                <h2>Vinceslink Super Store</h2>
+                <h3>Vinceslink<br>Super Store</h3>
                 <p>Daily essentials and premium groceries delivered to your doorstep.</p>
                 <a href="super-store.html" class="division-btn">Shop Essentials</a>
             </div>
@@ -1227,130 +1500,199 @@
 
         <!-- Realty -->
         <div class="division-card">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='280' viewBox='0 0 400 280'%3E%3Cdefs%3E%3ClinearGradient id='grad3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2317A2B8;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%230047AB;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='280' fill='url(%23grad3)'/%3E%3Ccircle cx='200' cy='140' r='60' fill='white' opacity='0.3'/%3E%3Ctext x='200' y='150' font-family='Arial' font-size='24' fill='white' text-anchor='middle'%3E🏡 REALTY%3C/text%3E%3C/svg%3E" alt="Vinceslink Realty">
+            <div class="division-image">🏠</div>
             <div class="division-content">
-                <h2>Vinceslink Realty</h2>
+                <h3>Vinceslink<br>Realty</h3>
                 <p>Trusted real estate solutions for buying, selling, and investing.</p>
-                <a href="realty.html" class="division-btn">Book Consultation</a>
+                <a href="real-estate.html" class="division-btn">Book Consultation</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Marketplace Section -->
-<section class="marketplace" id="marketplace">
+<!-- Marketplace -->
+<section class="marketplace" id="shop-now">
     <div class="marketplace-content">
         <div class="marketplace-text">
             <h2>MARKETPLACE</h2>
             <h3>Ready to shop?</h3>
             <p>Experience seamless shopping with our upcoming e-commerce platform</p>
-            <div class="coming-soon-badge">
-                🛍️ COMING SOON 😊
-            </div>
+            <a href="#" class="coming-soon-btn">
+                🛍️ COMING SOON 🤑
+            </a>
         </div>
-        <div class="marketplace-mockup">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='600' viewBox='0 0 300 600'%3E%3Crect width='300' height='600' rx='40' fill='%23000'/%3E%3Crect x='10' y='10' width='280' height='580' rx='35' fill='white'/%3E%3Crect x='100' y='20' width='100' height='25' rx='12' fill='%23000'/%3E%3Ctext x='150' y='80' font-family='Arial' font-size='20' fill='%230047AB' text-anchor='middle' font-weight='bold'%3EVINCESLINK%3C/text%3E%3Crect x='40' y='120' width='220' height='120' rx='10' fill='%23f0f0f0'/%3E%3Ctext x='150' y='190' font-family='Arial' font-size='14' fill='%23666' text-anchor='middle'%3EMarketplace%3C/text%3E%3C/svg%3E" alt="Marketplace Coming Soon">
+        <div class="marketplace-visual">
+            <img src="placeholder-cart.png" alt="Shopping Cart" class="shopping-cart-image" style="display:none;">
+            <div class="phone-mockup">
+                <div class="phone-screen">
+                    <div class="phone-header">
+                        <div class="logo" style="width: 30px; height: 30px; font-size: 1rem;">VL</div>
+                        <span>VINCESLINK</span>
+                    </div>
+                    <div class="phone-tabs">
+                        <div class="phone-tab active">Marketplace</div>
+                        <div class="phone-tab">History</div>
+                        <div class="phone-tab">Cart</div>
+                    </div>
+                    <div class="phone-products">
+                        <div class="phone-product">
+                            <div class="phone-product-image">📷</div>
+                            <div class="phone-product-name">Wireless Cam</div>
+                            <div class="phone-product-price">$39</div>
+                        </div>
+                        <div class="phone-product">
+                            <div class="phone-product-image">🎧</div>
+                            <div class="phone-product-name">Wireless Ear</div>
+                            <div class="phone-product-price">$99</div>
+                        </div>
+                        <div class="phone-product">
+                            <div class="phone-product-image">🍎</div>
+                            <div class="phone-product-name">Apple</div>
+                            <div class="phone-product-price">$1.29</div>
+                        </div>
+                        <div class="phone-product">
+                            <div class="phone-product-image">🔋</div>
+                            <div class="phone-product-name">Wireless Ch</div>
+                            <div class="phone-product-price">$39</div>
+                        </div>
+                        <div class="phone-product">
+                            <div class="phone-product-image">🔌</div>
+                            <div class="phone-product-name">USB-C</div>
+                            <div class="phone-product-price">$19</div>
+                        </div>
+                        <div class="phone-product">
+                            <div class="phone-product-image">💄</div>
+                            <div class="phone-product-name">Cream Jar</div>
+                            <div class="phone-product-price">$24</div>
+                        </div>
+                        <div class="phone-product">
+                            <div class="phone-product-image">⚡</div>
+                            <div class="phone-product-name">Fast Charger</div>
+                            <div class="phone-product-price">$29</div>
+                        </div>
+                        <div class="phone-product">
+                            <div class="phone-product-image">🎮</div>
+                            <div class="phone-product-name">Controller</div>
+                            <div class="phone-product-price">$59</div>
+                        </div>
+                        <div class="phone-product">
+                            <div class="phone-product-image">💡</div>
+                            <div class="phone-product-name">Smart Bulb</div>
+                            <div class="phone-product-price">$15</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
 <!-- About Section -->
 <section class="about" id="about">
-    <h2 class="section-title">ABOUT VINCESLINK</h2>
     <div class="about-content">
         <div class="about-text">
-            <div class="about-subsection">
+            <h2>ABOUT VINCESLINK</h2>
+            
+            <div class="about-story">
                 <h3>Our Story</h3>
-                <p>Vinceslink was founded with a vision to simplify modern living by bringing together three essential aspects of daily life: technology, everyday essentials, and property solutions. What started as a passion for providing quality gadgets has evolved into a multi-industry brand committed to excellence and customer satisfaction.</p>
+                <p>
+                    Vinceslink was founded with a vision to simplify modern living by bringing together three essential aspects of daily life: technology, everyday essentials, and property solutions. What started as a passion for providing quality gadgets has evolved into a multi-industry brand committed to excellence and customer satisfaction.
+                </p>
             </div>
 
-            <div class="about-subsection mission">
+            <div class="about-mission">
                 <h3>Our Mission</h3>
-                <p>To deliver exceptional value through quality products and reliable services while maintaining transparency, trust, and convenience in every customer interaction. We strive to be the go-to platform where technology meets lifestyle and opportunity meets reality.</p>
+                <p>
+                    To deliver exceptional value through quality products and reliable services while maintaining transparency, trust, and convenience in every customer interaction. We strive to be the go-to platform where technology meets lifestyle and opportunity meets reality.
+                </p>
             </div>
 
-            <div class="about-subsection vision">
+            <div class="about-vision">
                 <h3>Our Vision</h3>
-                <p>To become Nigeria's leading multi-industry ecosystem, where customers can access authentic gadgets, essential household items, and trusted real estate solutions—all under one trusted brand.</p>
+                <p>
+                    To become Nigeria's leading multi-industry ecosystem, where customers can access authentic gadgets, essential household items, and trusted real estate solutions—all in one place. We envision a future where Vinceslink is synonymous with quality, reliability, and innovation.
+                </p>
             </div>
         </div>
 
         <div class="founder-card">
-            <img src="images/founder.jpeg" alt="Vincent Nwankwuda - Founder">
+            <div class="founder-image">👤</div>
             <h3>Vincent</h3>
-            <p class="title">Founder & CEO</p>
-            <p>Driven by a passion for innovation and service excellence, Vincent established Vinceslink to bridge the gap between quality products and accessible services in Nigeria's growing market. His vision continues to guide our commitment to customer satisfaction and business integrity.</p>
+            <p class="founder-title">Founder & CEO</p>
+            <p class="founder-bio">
+                Driven by a passion for innovation and service excellence, Vincent established Vinceslink to bridge the gap between quality products and accessible services in Nigeria's growing market. His vision continues to guide our commitment to customer satisfaction and business integrity.
+            </p>
         </div>
     </div>
 </section>
 
 <!-- FAQ Section -->
 <section class="faq" id="faq">
-    <div class="faq-content">
+    <div class="faq-container">
         <h2>FAQ</h2>
-        <p class="faq-description">Have questions? We've got answers! Click below to view all frequently asked questions.</p>
+        <p class="faq-subtitle">Have questions? We've got answers! Click below to view all frequently asked questions.</p>
         
-        <button class="faq-button" onclick="toggleFAQ()">
-            <span id="faqIcon">▼</span> View All FAQs
+        <button class="faq-btn" onclick="toggleFAQ()">
+            <span>▼</span> View All FAQs
         </button>
 
         <div class="faq-items" id="faqItems">
-            <div class="faq-item" onclick="toggleFaqItem(this)">
+            <div class="faq-item" onclick="toggleAnswer(this)">
                 <div class="faq-question">
-                    <span>How do I place an order?</span>
+                    How do I place an order?
                     <span>+</span>
                 </div>
                 <div class="faq-answer">
-                    Currently, you can contact us directly via WhatsApp, phone, or visit our physical stores. Our e-commerce platform is coming soon for seamless online ordering.
+                    Once our e-commerce platform launches, you'll be able to browse products, add them to your cart, and complete your purchase securely. You can also contact us directly via WhatsApp or phone for immediate assistance.
                 </div>
             </div>
 
-            <div class="faq-item" onclick="toggleFaqItem(this)">
+            <div class="faq-item" onclick="toggleAnswer(this)">
                 <div class="faq-question">
-                    <span>What are your delivery options?</span>
+                    What are your delivery areas?
                     <span>+</span>
                 </div>
                 <div class="faq-answer">
-                    We offer delivery services within Ogun State and surrounding areas. Contact us for specific delivery times and charges based on your location.
+                    We currently serve Ogun State and surrounding areas. For gadgets and super store products, we offer pickup and delivery options. Contact us for specific delivery information to your location.
                 </div>
             </div>
 
-            <div class="faq-item" onclick="toggleFaqItem(this)">
+            <div class="faq-item" onclick="toggleAnswer(this)">
                 <div class="faq-question">
-                    <span>How does the property consultation work?</span>
+                    How does the property consultation process work?
                     <span>+</span>
                 </div>
                 <div class="faq-answer">
-                    Fill out our consultation form with your property interests and budget. Our real estate team will contact you within 24-48 hours to schedule a viewing or discuss available options.
+                    Simply fill out our consultation form with your requirements, and our real estate team will contact you within 24 hours to discuss available properties, schedule viewings, and guide you through the entire process.
                 </div>
             </div>
 
-            <div class="faq-item" onclick="toggleFaqItem(this)">
+            <div class="faq-item" onclick="toggleAnswer(this)">
                 <div class="faq-question">
-                    <span>What is your refund and return policy?</span>
+                    What is your refund policy?
                     <span>+</span>
                 </div>
                 <div class="faq-answer">
-                    We accept returns within 7 days for defective products. Items must be in original condition with all packaging. Contact our support team to initiate a return.
+                    We offer refunds for defective products within 7 days of purchase with proof of purchase. Items must be in original condition with packaging. Contact our support team to initiate a refund request.
                 </div>
             </div>
 
-            <div class="faq-item" onclick="toggleFaqItem(this)">
+            <div class="faq-item" onclick="toggleAnswer(this)">
                 <div class="faq-question">
-                    <span>What are your support hours?</span>
+                    What are your support hours?
                     <span>+</span>
                 </div>
                 <div class="faq-answer">
-                    Our customer support is available Monday to Saturday, 9:00 AM - 6:00 PM WAT. You can reach us via WhatsApp, phone, or email.
+                    Our customer support is available Monday to Saturday, 9:00 AM - 6:00 PM. You can reach us via phone, email, or WhatsApp. We respond to all inquiries within 24 hours.
                 </div>
             </div>
         </div>
 
         <div class="legal-links">
-            <a href="#" class="legal-link">
+            <a href="terms.html" class="legal-link">
                 📄 Terms & Conditions
             </a>
-            <a href="#" class="legal-link">
+            <a href="privacy.html" class="legal-link">
                 🔒 Privacy Policy
             </a>
             <a href="#contact" class="legal-link">
@@ -1362,21 +1704,19 @@
 
 <!-- Contact Section -->
 <section class="contact" id="contact">
-    <h2>GET IN TOUCH</h2>
-    
-    <div class="contact-content">
-        <!-- Newsletter -->
+    <div class="contact-container">
+        <h2>GET IN TOUCH</h2>
+
         <div class="newsletter">
             <h3>Stay Updated</h3>
             <p>Subscribe to our newsletter for exclusive deals, new arrivals, and property listings</p>
             <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
-                <input type="email" placeholder="Enter your email address" required>
-                <button type="submit">Subscribe</button>
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
             </form>
         </div>
 
-        <!-- Contact Methods -->
-        <div class="contact-methods">
+        <div class="contact-grid">
             <div class="contact-card">
                 <div class="contact-icon">📞</div>
                 <h3>Call Us</h3>
@@ -1396,18 +1736,10 @@
             </div>
 
             <div class="contact-card">
-                <div class="contact-icon">🏪</div>
+                <div class="contact-icon">🏠</div>
                 <h3>Super Store / Head Office</h3>
                 <p>No. 91 Ishaka Road, Ijako, Ogun State</p>
             </div>
-        </div>
-
-        <!-- Social Links -->
-        <div class="social-links">
-            <a href="https://www.facebook.com/share/17XjXSBeR1/?mibextid=wwXIfr" class="social-icon facebook" target="_blank">f</a>
-            <a href="https://www.instagram.com/vinceslink_1" class="social-icon instagram" target="_blank">📷</a>
-            <a href="https://www.tiktok.com/@vinceslink1?_r=1&_t=ZS-93wGhXnvipZ" class="social-icon tiktok" target="_blank">♪</a>
-            <a href="https://wa.me/message/5XF6PFQZNCLTA1" class="social-icon whatsapp" target="_blank">💬</a>
         </div>
     </div>
 </section>
@@ -1416,34 +1748,43 @@
 <footer>
     <div class="footer-content">
         <div class="footer-section">
-            <h3>About Vinceslink</h3>
-            <p>Your trusted partner for gadgets, everyday essentials, and real estate solutions across Nigeria.</p>
+            <h3>Vinceslink</h3>
+            <p>Everyday Essentials, Smart Gadgets & Trusted Properties — All in One Place.</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/share/17XjXSBeR1/?mibextid=wwXIfr" target="_blank" class="social-icon">📘</a>
+                <a href="https://www.instagram.com/vinceslink_1" target="_blank" class="social-icon">📷</a>
+                <a href="https://www.tiktok.com/@vinceslink1?_r=1&_t=ZS-93wGhXnvipZ" target="_blank" class="social-icon">🎵</a>
+                <a href="https://wa.me/message/5XF6PFQZNCLTA1" target="_blank" class="social-icon">💬</a>
+            </div>
         </div>
 
         <div class="footer-section">
             <h3>Our Locations</h3>
             <p><strong>Head Office:</strong><br>No. 91 Ishaka Road, Ijako, Ogun State</p>
-            <p><strong>Gadget Hub:</strong><br>No. 12 Ijoko Rd, Sango Ota</p>
-            <p><strong>Branch:</strong><br>No. 42 Community Road, Egan Ijoko</p>
+            <p><strong>Gadget Hub:</strong><br>No. 12 Ijoko Rd, Sango Ota, Ogun State</p>
+            <p><strong>Branch Office:</strong><br>No. 42 Community Road, Egan Ijoko, Ogun State</p>
         </div>
 
         <div class="footer-section">
             <h3>Quick Links</h3>
-            <p><a href="#home">Home</a></p>
-            <p><a href="#divisions">Services</a></p>
-            <p><a href="#about">About Us</a></p>
-            <p><a href="#contact">Contact</a></p>
+            <a href="#home">Home</a>
+            <a href="gadget-hub.html">Gadget Hub</a>
+            <a href="super-store.html">Super Store</a>
+            <a href="real-estate.html">Real Estate</a>
+            <a href="#about">About Us</a>
+            <a href="#faq">FAQ</a>
         </div>
 
         <div class="footer-section">
             <h3>Contact</h3>
-            <p>📞 +234 907 868 3552</p>
-            <p>✉️ vinceslink@gmail.com</p>
-            <p>🌐 In collaboration with Paul Feng</p>
+            <p>Phone: +234 907 868 3552</p>
+            <p>Email: vinceslink@gmail.com</p>
+            <p>WhatsApp: <a href="https://wa.me/message/5XF6PFQZNCLTA1" target="_blank">Chat with us</a></p>
         </div>
     </div>
 
     <div class="footer-bottom">
+        <p>In collaboration with Paul Feng</p>
         <p>Built with 🤍 by <a href="#" target="_blank">Japheth</a></p>
         <p>&copy; 2025 Vinceslink. All rights reserved.</p>
     </div>
@@ -1451,109 +1792,118 @@
 
 <script>
     // Theme Toggle
+    let isDark = false;
     function toggleTheme() {
-        const body = document.body;
-        const themeToggle = document.getElementById('themeToggle');
-        
-        if (body.getAttribute('data-theme') === 'dark') {
-            body.removeAttribute('data-theme');
-            themeToggle.textContent = '☀️';
-            localStorage.setItem('theme', 'light');
-        } else {
-            body.setAttribute('data-theme', 'dark');
-            themeToggle.textContent = '🌙';
-            localStorage.setItem('theme', 'dark');
-        }
+        isDark = !isDark;
+        document.body.classList.toggle('dark-mode');
+        const toggle = document.querySelector('.theme-toggle');
+        toggle.textContent = isDark ? '☀️' : '🌙';
     }
-
-    // Load saved theme
-    window.addEventListener('DOMContentLoaded', () => {
-        const savedTheme = localStorage.getItem('theme');
-        const themeToggle = document.getElementById('themeToggle');
-        
-        if (savedTheme === 'dark') {
-            document.body.setAttribute('data-theme', 'dark');
-            themeToggle.textContent = '🌙';
-        }
-
-        // Show cookie popup on first visit
-        if (!localStorage.getItem('cookiesAccepted')) {
-            document.getElementById('cookiePopup').classList.add('active');
-        }
-    });
 
     // Mobile Menu Toggle
-    function toggleMenu() {
-        const navLinks = document.getElementById('navLinks');
-        const hamburger = document.getElementById('hamburger');
-        
-        navLinks.classList.toggle('active');
-        hamburger.classList.toggle('active');
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+        menu.classList.toggle('active');
     }
 
-    // Cookie Functions
-    function acceptCookies() {
-        localStorage.setItem('cookiesAccepted', 'true');
-        document.getElementById('cookiePopup').classList.remove('active');
+    function toggleServices() {
+        const services = document.getElementById('mobileServices');
+        services.classList.toggle('active');
     }
 
-    function rejectCookies() {
-        localStorage.setItem('cookiesAccepted', 'false');
-        document.getElementById('cookiePopup').classList.remove('active');
-    }
+    // Carousel
+    let currentSlide = 0;
+    const track = document.getElementById('carouselTrack');
+    const items = document.querySelectorAll('.carousel-item');
+    const totalSlides = items.length;
 
-    // FAQ Toggle
-    function toggleFAQ() {
-        const faqItems = document.getElementById('faqItems');
-        const faqIcon = document.getElementById('faqIcon');
-        
-        if (faqItems.classList.contains('active')) {
-            faqItems.classList.remove('active');
-            faqIcon.textContent = '▼';
-        } else {
-            faqItems.classList.add('active');
-            faqIcon.textContent = '▲';
+    function createDots() {
+        const dotsContainer = document.getElementById('carouselDots');
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            if (i === 0) dot.classList.add('active');
+            dot.onclick = () => goToSlide(i);
+            dotsContainer.appendChild(dot);
         }
     }
 
-    function toggleFaqItem(element) {
-        element.classList.toggle('active');
-        const icon = element.querySelector('.faq-question span:last-child');
-        icon.textContent = element.classList.contains('active') ? '−' : '+';
-    }
-
-    // Newsletter Subscription
-    function subscribeNewsletter(event) {
-        event.preventDefault();
-        const email = event.target.querySelector('input').value;
-        alert(`Thank you for subscribing with ${email}! You'll receive updates soon.`);
-        event.target.reset();
-    }
-
-    // Auto Carousel
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.carousel-item');
-    const dots = document.querySelectorAll('.dot');
-    const track = document.getElementById('carouselTrack');
-
-    function updateCarousel() {
-        const slideWidth = slides[0].offsetWidth + 30; // width + gap
-        track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-        
+    function updateDots() {
+        const dots = document.querySelectorAll('.dot');
         dots.forEach((dot, index) => {
             dot.classList.toggle('active', index === currentSlide);
         });
     }
 
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % (slides.length - 2);
+    function moveCarousel(direction) {
+        currentSlide += direction;
+        if (currentSlide < 0) currentSlide = totalSlides - 1;
+        if (currentSlide >= totalSlides) currentSlide = 0;
         updateCarousel();
     }
 
-    // Auto-advance every 4 seconds
-    setInterval(nextSlide, 4000);
+    function goToSlide(index) {
+        currentSlide = index;
+        updateCarousel();
+    }
 
-    // Smooth Scrolling
+    function updateCarousel() {
+        const offset = -currentSlide * (280 + 32); // item width + gap
+        track.style.transform = `translateX(${offset}px)`;
+        updateDots();
+    }
+
+    // Auto-slide every 4 seconds
+    setInterval(() => {
+        moveCarousel(1);
+    }, 4000);
+
+    createDots();
+
+    // FAQ Toggle
+    function toggleFAQ() {
+        const items = document.getElementById('faqItems');
+        items.classList.toggle('active');
+        const btn = document.querySelector('.faq-btn span');
+        btn.textContent = items.classList.contains('active') ? '▲' : '▼';
+    }
+
+    function toggleAnswer(item) {
+        const answer = item.querySelector('.faq-answer');
+        const icon = item.querySelector('.faq-question span');
+        answer.classList.toggle('active');
+        icon.textContent = answer.classList.contains('active') ? '−' : '+';
+    }
+
+    // Newsletter
+    function subscribeNewsletter(e) {
+        e.preventDefault();
+        const email = e.target.querySelector('input').value;
+        alert(`Thank you for subscribing! We'll send updates to ${email}`);
+        e.target.reset();
+    }
+
+    // Cookie Popup
+    window.onload = function() {
+        const cookieAccepted = localStorage.getItem('cookieAccepted');
+        if (!cookieAccepted) {
+            setTimeout(() => {
+                document.getElementById('cookiePopup').classList.add('active');
+            }, 1000);
+        }
+    };
+
+    function acceptCookies() {
+        localStorage.setItem('cookieAccepted', 'true');
+        document.getElementById('cookiePopup').classList.remove('active');
+    }
+
+    function rejectCookies() {
+        localStorage.setItem('cookieAccepted', 'rejected');
+        document.getElementById('cookiePopup').classList.remove('active');
+    }
+
+    // Smooth Scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -1563,6 +1913,28 @@
                     behavior: 'smooth',
                     block: 'start'
                 });
+            }
+        });
+    });
+
+    // Active Nav Link on Scroll
+    window.addEventListener('scroll', () => {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (scrollY >= (sectionTop - 100)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
             }
         });
     });
