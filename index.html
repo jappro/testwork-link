@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinceslink - Everyday Essentials, Smart Gadgets & Trusted Properties</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+```
+:root {
+    --primary-blue: #0019A8;
+    --teal: #20B2AA;
+    --orange: #FF8C42;
+    --dark-gray: #2C3E50;
+    --light-gray: #F8F9FA;
+    --white: #FFFFFF;
+    --text-dark: #333333;
+    --text-light: #666666;
+    --bg-color: #FFFFFF;
+    --card-bg: #FFFFFF;
+    --nav-bg: #FFFFFF;
+}
+
+body.dark-mode {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --nav-bg: #1a1a1a;
+    --text-dark: #FFFFFF;
+    --text-light: #b3b3b3;
+    --light-gray: #2a2a2a;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    overflow-x: hidden;
+    background: var(--bg-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.terms-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.terms-popup.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.terms-content {
+    background: var(--card-bg);
+    padding: 50px;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.terms-popup.show .terms-content {
+    transform: scale(1);
+}
+
+.terms-content h2 {
+    color: var(--primary-blue);
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.terms-text {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 30px;
+    padding-right: 10px;
+}
+
+.terms-text p {
+    color: var(--text-light);
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.terms-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.terms-btn {
+    flex: 1;
+    padding: 16px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.accept-btn {
+    background: var(--primary-blue);
+    color: var(--white);
+}
+
+.accept-btn:hover {
+    background: #0025D1;
+    transform: translateY(-2px);
+}
+
+.reject-btn {
+    background: var(--light-gray);
+    color: var(--text-dark);
+    border: 2px solid var(--dark-gray);
+}
+
+.reject-btn:hover {
+    background: #e0e0e0;
+}
+
+.navbar {
+    background: var(--nav-bg);
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.nav-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-img {
+    height: 50px;
+    width: auto;
+}
+
+.brand-text {
+    font-size: 28px;
+    font-weight: 710;
+    color: var(--primary-blue);
+    letter-spacing: 0.6px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: var(--primary-blue);
+}
+
+.nav-links a.active {
+    color: var(--primary-blue);
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--primary-blue);
+}
+
+.nav-item {
+    position: relative;
+}
+
+.services-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.3s ease;
+}
+
+.services-toggle:hover {
+    color: var(--primary-blue);
+}
+
+.services-toggle svg {
+    transition: transform 0.3s ease;
+}
+
+.services-toggle.active svg {
+    transform: rotate(180deg);
+}
+
+.services-submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--card-bg);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    padding: 15px 0;
+    min-width: 200px;
+    margin-top: 10px;
+}
+
+.services-submenu.show {
+    display: block;
+}
+
+.services-submenu a {
+    display: block;
+    padding: 12px 20px;
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.services-submenu a:hover {
+    background: var(--light-gray);
+    color: var(--primary-blue);
+    padding-left: 25px;
+}
+
+.signup-btn {
+    background: linear-gradient(135deg, var(--orange), #ff7a2b);
+    color: var(--white) !important;
+    padding: 10px 25px !important;
+    border-radius: 50px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 140, 66, 0.3);
+    transition: all 0.3s ease;
+}
+
+.signup-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 140, 66, 0.4);
+}
+
+.dark-mode-toggle {
+    background: var(--light-gray);
+    border: 2px solid var(--text-light);
+    padding: 8px 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 24px;
+    transition: all 0.3s ease;
+    color: var(--text-dark);
+}
+
+.dark-mode-toggle:hover {
+    background: var(--primary-blue);
+    border-color: var(--primary-blue);
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: var(--primary-blue);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.hero-section {
+    background: var(--bg-color);
+    padding: 100px 0 80px;
+    text-align: center;
+}
+
+.hero-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.hero-title {
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.hero-subtitle {
+    font-size: 22px;
+    color: var(--text-dark);
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+.hero-description {
+    font-size: 16px;
+    color: var(--text-light);
+    max-width: 800px;
+    margin: 0 auto 50px;
+    line-height: 1.8;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+}
+
+.hero-btn {
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-gadgets {
+    background: var(--primary-blue);
+    color: var(--white);
+}
+
+.btn-gadgets:hover {
+    background: #0025D1;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 25, 168, 0.3);
+}
+
+.btn-essentials {
+    background: var(--orange);
+    color: var(--white);
+}
+
+.btn-essentials:hover {
+    background: #ff7a2b;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 140, 66, 0.3);
+}
+
+.btn-properties {
+    background: transparent;
+    color: var(--primary-blue);
+    border: 2px solid var(--primary-blue);
+}
+
+.btn-properties:hover {
+    background: var(--primary-blue);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.carousel-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.carousel-container {
+    display: flex;
+    gap: 35px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 20px;
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+.product-card-carousel {
+    min-width: 300px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 30px 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.product-card-carousel:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.product-image-carousel {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+.product-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.product-category {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 25px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: var(--orange);
+    width: 30px;
+    border-radius: 5px;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    font-size: 14px;
+    color: var(--text-light);
+    justify-content: center;
+}
+
+.breadcrumb a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+    color: var(--primary-blue);
+}
+
+.breadcrumb span {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.business-section {
+    background: linear-gradient(to bottom, 
+        var(--bg-color) 0%, 
+        #f0f9f8 20%,
+        #E0F7F5 40%, 
+        var(--teal) 70%, 
+        var(--primary-blue) 100%
+    );
+    padding: 100px 0;
+    transition: background 0.3s ease;
+}
+
+body.dark-mode .business-section {
+    background: linear-gradient(to bottom, 
+        var(--bg-color) 0%, 
+        #1a3a3a 20%,
+        #2a4a4a 40%, 
+        #1a5a5a 70%, 
+        #0a2a5a 100%
+    );
+}
+
+.business-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.section-title {
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+body.dark-mode .section-title {
+    color: var(--white);
+}
+
+.business-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.business-card {
+    background: var(--white);
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    height: 650px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+body.dark-mode .business-card {
+    background: #2a2a2a;
+}
+
+.business-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.business-card-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    overflow: hidden;
+}
+
+.business-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.business-card:hover .business-card-image {
+    transform: scale(1.05);
+}
+
+.business-card-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 40px;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.75) 0%,
+        rgba(0, 0, 0, 0.5) 50%,
+        transparent 100%
+    );
+    text-align: center;
+}
+
+.business-card-title h3 {
+    font-size: 32px;
+    font-weight: 800;
+    color: white;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.business-card-content {
+    padding: 25px 30px;
+    background: var(--white);
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+}
+
+body.dark-mode .business-card-content {
+    background: #2a2a2a;
+}
+
+.business-card-content p {
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin: 0;
+    font-size: 15px;
+}
+
+.business-card-btn {
+    background: var(--orange);
+    color: var(--white);
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.business-card-btn:hover {
+    background: #ff7a2b;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 140, 66, 0.5);
+}
+
+@media (max-width: 1200px) {
+    .business-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 75px;
+        right: -100%;
+        width: 85%;
+        max-width: 350px;
+        background: var(--nav-bg);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 40px 30px;
+        box-shadow: -8px 0 30px rgba(0, 0, 0, 0.15);
+        transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        height: calc(100vh - 75px);
+        overflow-y: auto;
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links li {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .nav-item {
+        width: 100%;
+    }
+
+    .services-submenu {
+        position: static;
+        box-shadow: none;
+        margin-top: 10px;
+        padding-left: 20px;
+        background: rgba(0, 25, 168, 0.05);
+        border-radius: 8px;
+    }
+
+    .signup-btn {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .dark-mode-toggle {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .menu-toggle {
+        display: flex;
+        z-index: 1000;
+    }
+
+    .hero-title {
+        font-size: 42px;
+    }
+
+    .section-title {
+        font-size: 32px;
+    }
+
+    .business-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .business-card {
+        height: 580px;
+    }
+
+    .business-card-image-wrapper {
+        height: 400px;
+    }
+
+    .business-card-title h3 {
+        font-size: 26px;
+    }
+}
+```
+
+</style>
+</head>
+<body>
+    <div class="terms-popup" id="termsPopup">
+        <div class="terms-content">
+            <h2>Terms & Conditions</h2>
+            <div class="terms-text">
+                <p><strong>Welcome to Vinceslink!</strong></p>
+                <p>By accessing and using this website, you agree to comply with our terms and conditions.</p>
+                <p><strong>By continuing, you consent to:</strong></p>
+                <p>• Our use of cookies for analytics<br>• Collection of necessary information<br>• Communication regarding our services</p>
+            </div>
+            <div class="terms-buttons">
+                <button class="terms-btn accept-btn" onclick="acceptTerms()">Accept All</button>
+                <button class="terms-btn reject-btn" onclick="rejectTerms()">Reject Non-Essential</button>
+            </div>
+        </div>
+    </div>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo-section">
+            <img src="images/IMG_8996.jpeg" alt="Vinceslink Logo" class="logo-img">
+            <span class="brand-text">vinceslink</span>
+        </div>
+        <button class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li class="nav-item">
+                <div class="services-toggle" onclick="toggleServices()">
+                    <span>Services</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="services-submenu" id="servicesSubmenu">
+                    <a href="#services">Gadget Hub</a>
+                    <a href="#services">Super Store</a>
+                    <a href="#services">Real Estate</a>
+                </div>
+            </li>
+            <li><a href="#marketplace">Shop Now</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="javascript:void(0)" onclick="showTermsPopup()" class="signup-btn">Sign Up</a></li>
+            <li>
+                <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+                    <span id="modeIcon">🌙</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<section id="home" class="hero-section">
+    <div class="hero-container">
+        <h1 class="hero-title">VINCESLINK</h1>
+        <p class="hero-subtitle">Everyday Essentials • Gadgets • Realty</p>
+        <p class="hero-description">
+            Everyday essentials, smart gadgets, and trusted real estate solutions—all in one place with Vinceslink.
+        </p>
+
+```
+    <div class="hero-buttons">
+        <a href="#services" class="hero-btn btn-gadgets">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            Explore Gadgets
+        </a>
+        <a href="#services" class="hero-btn btn-essentials">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            Shop Essentials
+        </a>
+        <a href="#services" class="hero-btn btn-properties">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            View Properties
+        </a>
+    </div>
+
+    <div class="carousel-wrapper">
+        <div class="carousel-container" id="productCarousel">
+            <div class="product-card-carousel">
+                <img src="images/carousel/IMG_8970.jpeg" alt="PF-014 Charger" class="product-image-carousel">
+                <h4 class="product-name">PF-014 Charger</h4>
+                <p class="product-category">Gadgets</p>
+            </div>
+            <div class="product-card-carousel">
+                <img src="images/carousel/IMG_8969.jpeg" alt="P-31 Headset" class="product-image-carousel">
+                <h4 class="product-name">P-31 Headset</h4>
+                <p class="product-category">Gadgets</p>
+            </div>
+            <div class="product-card-carousel">
+                <img src="images/carousel/IMG_8971.jpeg" alt="Fanice" class="product-image-carousel">
+                <h4 class="product-name">Fanice</h4>
+                <p class="product-category">Super Store</p>
+            </div>
+            <div class="product-card-carousel">
+                <img src="images/carousel/IMG_8997.png" alt="Cosmetics" class="product-image-carousel">
+                <h4 class="product-name">Cosmetics</h4>
+                <p class="product-category">Super Store</p>
+            </div>
+            <div class="product-card-carousel">
+                <img src="images/carousel/IMG_8972.jpeg" alt="Land" class="product-image-carousel">
+                <h4 class="product-name">Land</h4>
+                <p class="product-category">Realty</p>
+            </div>
+            <div class="product-card-carousel">
+                <img src="images/carousel/IMG_8976.png" alt="House" class="product-image-carousel">
+                <h4 class="product-name">House</h4>
+                <p class="product-category">Realty</p>
+            </div>
+        </div>
+        <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+</div>
+```
+
+</section>
+
+<section id="services" class="business-section">
+    <div class="business-container">
+        <div class="breadcrumb">
+            <a href="#home">Home</a>
+            <span>›</span>
+            <span>Services</span>
+        </div>
+
+```
+    <div class="section-header">
+        <h2 class="section-title">OUR BUSINESS DIVISIONS</h2>
+    </div>
+
+    <div class="business-cards">
+        <div class="business-card">
+            <div class="business-card-image-wrapper">
+                <img src="images/business/IMG_8993.jpeg" alt="Gadget Hub" class="business-card-image">
+                <div class="business-card-title">
+                    <h3>Vinceslink<br>Gadget Hub</h3>
+                </div>
+            </div>
+            <div class="business-card-content">
+                <p>Your one-stop destination for smart gadgets and cutting-edge electronics.</p>
+                <a href="#marketplace" class="business-card-btn">View products</a>
+            </div>
+        </div>
+
+        <div class="business-card">
+            <div class="business-card-image-wrapper">
+                <img src="images/business/IMG_8991.jpeg" alt="Super Store" class="business-card-image">
+                <div class="business-card-title">
+                    <h3>Vinceslink<br>Super Store</h3>
+                </div>
+            </div>
+            <div class="business-card-content">
+                <p>Daily essentials and premium groceries delivered to your doorstep.</p>
+                <a href="#marketplace" class="business-card-btn">Shop Essentials</a>
+            </div>
+        </div>
+
+        <div class="business-card">
+            <div class="business-card-image-wrapper">
+                <img src="images/business/IMG_8998.jpeg" alt="Real Estate" class="business-card-image">
+                <div class="business-card-title">
+                    <h3>Vinceslink<br>Realty</h3>
+                </div>
+            </div>
+            <div class="business-card-content">
+                <p>Trusted real estate solutions for buying, selling, and investing.</p>
+                <a href="#marketplace" class="business-card-btn">Book Consultation</a>
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+</section>
+
+<script>
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        const modeIcon = document.getElementById('modeIcon');
+        
+        if (document.body.classList.contains('dark-mode')) {
+            modeIcon.textContent = '☀️';
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            modeIcon.textContent = '🌙';
+            localStorage.setItem('darkMode', 'disabled');
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', function() {
+        const darkMode = localStorage.getItem('darkMode');
+        
+        if (darkMode === 'enabled') {
+            document.body.classList.add('dark-mode');
+            const modeIcon = document.getElementById('modeIcon');
+            if (modeIcon) {
+                modeIcon.textContent = '☀️';
+            }
+        }
+        
+        const hasAccepted = localStorage.getItem('vinceslinkTermsAccepted');
+        if (!hasAccepted) {
+            setTimeout(() => {
+                const popup = document.getElementById('termsPopup');
+                if (popup) {
+                    popup.classList.add('show');
+                }
+            }, 1000);
+        }
+
+        const carousel = document.getElementById('productCarousel');
+        const dotsContainer = document.getElementById('carouselDots');
+        if (carousel && dotsContainer) {
+            const carouselItems = carousel.querySelectorAll('.product-card-carousel');
+
+            carouselItems.forEach((item, index) => {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                if (index === 0) dot.classList.add('active');
+                dotsContainer.appendChild(dot);
+            });
+
+            let scrollPosition = 0;
+            setInterval(() => {
+                scrollPosition += 335;
+                if (scrollPosition >= carousel.scrollWidth - carousel.clientWidth) {
+                    scrollPosition = 0;
+                }
+                carousel.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+                
+                const index = Math.round(scrollPosition / 335);
+                document.querySelectorAll('.dot').forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+            }, 3500);
+        }
+    });
+
+    function acceptTerms() {
+        localStorage.setItem('vinceslinkTermsAccepted', 'true');
+        const popup = document.getElementById('termsPopup');
+        if (popup) {
+            popup.classList.remove('show');
+        }
+    }
+
+    function rejectTerms() {
+        localStorage.setItem('vinceslinkTermsAccepted', 'rejected');
+        const popup = document.getElementById('termsPopup');
+        if (popup) {
+            popup.classList.remove('show');
+        }
+    }
+
+    function showTermsPopup() {
+        const popup = document.getElementById('termsPopup');
+        if (popup) {
+            popup.classList.add('show');
+        }
+    }
+
+    function toggleServices() {
+        const submenu = document.getElementById('servicesSubmenu');
+        const toggle = document.querySelector('.services-toggle');
+        if (submenu) {
+            submenu.classList.toggle('show');
+        }
+        if (toggle) {
+            toggle.classList.toggle('active');
+        }
+    }
+
+    document.addEventListener('click', (e) => {
+        const servicesToggle = document.querySelector('.services-toggle');
+        const servicesSubmenu = document.getElementById('servicesSubmenu');
+        if (servicesToggle && servicesSubmenu && !servicesToggle.contains(e.target) && !servicesSubmenu.contains(e.target)) {
+            servicesSubmenu.classList.remove('show');
+            servicesToggle.classList.remove('active');
+        }
+    });
+
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const spans = menuToggle.querySelectorAll('span');
+            if (navLinks.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(7px, 7px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+    }
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navLinks) {
+                navLinks.classList.remove('active');
+            }
+            const spans = menuToggle?.querySelectorAll('span');
+            if (spans) {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
